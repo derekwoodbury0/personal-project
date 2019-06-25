@@ -1,0 +1,17 @@
+.email-signup {
+    height: 436px;
+    width: 100vw;
+    /* background: black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.email-signup-container {
+    height: 90%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}

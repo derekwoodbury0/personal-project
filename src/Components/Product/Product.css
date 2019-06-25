@@ -1,0 +1,8 @@
+.product-image {
+    height: 608px;
+    width: 100vw;
+    background-size: cover;
+    margin: 25px 0;
+    display: flex;
+    align-items: flex-end
+}

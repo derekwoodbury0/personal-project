@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import routes from './routes'
+import { connect } from 'react-redux'
+import { getUser } from './redux/reducers/userReducer'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from './Components/Header/Header'
+import Footer from './Components/Footer/Footer'
+
+class App extends Component {
+  componentDidMount() {
+    this.props.getUser()
+  }
+
+  render() {
+    console.log(this.props)
+    return (
+        <div className="App">
+          <Header />
+          {routes}
+          <Footer />
+        </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.data,
+    cart: state.cartReducer.data
+  }
+}
+
+export default connect(mapStateToProps, { getUser })(App);
