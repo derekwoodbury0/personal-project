@@ -6,6 +6,7 @@ import Login from './Components/Login/Login'
 import ProductsContainer from './Components/ProductsContainer/ProductsContainer'
 import Register from './Components/Register/Register'
 import Cart from './Components/Cart/Cart'
+import Checkout from './Components/Checkout/Checkout'
 
 export default (
     <Switch>
@@ -14,5 +15,6 @@ export default (
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/cart" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
     </Switch>
 )

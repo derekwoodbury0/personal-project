@@ -3,6 +3,7 @@ import './Cart.css'
 import { connect } from 'react-redux'
 import { getUser } from '../../redux/reducers/userReducer'
 import { updateCart, getCart, removeFromCart } from '../../redux/reducers/cartReducer'
+import StripeCheckout from 'react-stripe-checkout'
 
 class Cart extends Component {
     constructor(props) {
@@ -85,7 +86,10 @@ class Cart extends Component {
                     </div>
                 </div>
                 <div className="checkout-container">
-                    <h3>Continue to Checkout</h3>
+                    <StripeCheckout 
+                        label="Checkout Now" 
+                        name="Jaybird Checkout"
+                    />
                 </div>
             </div>
             )

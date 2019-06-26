@@ -48,3 +48,16 @@
     color: white;
 }
 
+
+
+@media screen and (min-width: 500px) {
+    .full-header {
+        background: black;
+    }
+    .menu-icon {
+        display: none;
+    }
+    .dropdown-menu {
+        
+    }
+}
