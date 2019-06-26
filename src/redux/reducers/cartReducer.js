@@ -15,6 +15,9 @@ const CLEAR_CART = 'CLEAR_CART'
 const UPDATE_CART = 'UPDATE_CART'
 const UPDATE_CART_FULFILLED = 'UPDATE_CART_FULFILLED'
 
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const REMOVE_FROM_CART_FULFILLED = 'REMOVE_FROM_CART'
+
 export default function(state = initialState, action) {
     switch (action.type) {
         case ADD_TO_CART_FULFILLED:
@@ -24,6 +27,8 @@ export default function(state = initialState, action) {
         case CLEAR_CART:
             return {...state, data: []}
         case UPDATE_CART_FULFILLED:
+            return {...state, data: action.payload.data}
+        case REMOVE_FROM_CART_FULFILLED:
             return {...state, data: action.payload.data}
         default:
             return state
@@ -53,6 +58,13 @@ export function clearCart() {
 export function updateCart(id, updatedQuantity) {
     return {
         type: UPDATE_CART,
-        payload: axios.post(`api/cart/update/${id}`, updatedQuantity)
+        payload: axios.put(`api/cart/update/${id}`, updatedQuantity)
+    }
+}
+
+export function removeFromCart(id) {
+    return {
+        type: REMOVE_FROM_CART,
+        payload: axios.delete(`api/cart/remove/${id}`)
     }
 }

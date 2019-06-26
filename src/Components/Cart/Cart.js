@@ -1,9 +1,8 @@
 import React, { Component} from 'react'
 import './Cart.css'
 import { connect } from 'react-redux'
-import { getCart } from '../../redux/reducers/cartReducer'
 import { getUser } from '../../redux/reducers/userReducer'
-import { updateCart } from '../../redux/reducers/cartReducer'
+import { updateCart, getCart, removeFromCart } from '../../redux/reducers/cartReducer'
 
 class Cart extends Component {
     constructor(props) {
@@ -25,6 +24,11 @@ class Cart extends Component {
         let { updatedQuantity } = this.state
         this.toggleChange()
         this.props.updateCart(id, {updatedQuantity})
+    }
+
+    removeFromCart = id => {
+        this.props.removeFromCart(id)
+        this.props.getCart()
     }
     
     render() {
@@ -51,8 +55,14 @@ class Cart extends Component {
                                         {this.state.toggleChangeQuantity ? 
                                             <div>
                                                 <h3>QTY:</h3>
-                                                <input type="number" min="1" max="10" onChange={this.handleQuantityChange}/>
-                                                <h5 onClick={() => this.changeQuantity(product_id)} style={{marginTop: '25px'}}>Save</h5>
+                                                <input type="number" min="1" max="10" 
+                                                    onChange={this.handleQuantityChange}
+                                                />
+                                                <h5 onClick={() => this.changeQuantity(product_id)} 
+                                                    style={{marginTop: '25px'}}
+                                                    >Save
+                                                </h5>
+                                                <h5 onClick={() => this.toggleChange()}>Cancel</h5>
                                             </div>
                                             
                                             :
@@ -61,7 +71,7 @@ class Cart extends Component {
                                                 <h5 onClick={() => this.toggleChange()} style={{marginTop: '25px'}}>Change <br /> Quantity</h5>
                                             </div>
                                         }
-                                        <h5>&#128465;</h5>
+                                        <h5 onClick={() => this.removeFromCart(product_id)}>&#128465;</h5>
                                     </div>
                                 </div>
                             </div>
@@ -89,4 +99,4 @@ const mapStateToProps = state => {
     }
   }
 
-export default connect(mapStateToProps, { getUser, getCart, updateCart })(Cart)
+export default connect(mapStateToProps, { getUser, getCart, updateCart, removeFromCart })(Cart)

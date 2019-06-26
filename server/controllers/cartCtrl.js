@@ -52,9 +52,21 @@ module.exports = {
         
         let foundCarts = await db.get_cart(user_id)
         let foundCart = foundCarts[0]
-        console.log(foundCarts)
         foundCart.quantity = updatedQuantity
-        let updatedCart = await db.update_quantity({ quantity: updatedQuantity, product_id: product_id })
+        await db.update_quantity({ quantity: updatedQuantity, product_id: product_id })
+        let updatedCart = await db.get_cart(user_id)
+        res.send(updatedCart)
+    },
+    removeFromCart: async (req, res) => {
+        let db = req.app.get('db')
+        let { user_id } = req.session.user 
+        let { id: product_id } = req.params
+        let carts = await db.get_cart(user_id)
+        let cart = carts[0]
+        let { cart_id } = cart
+
+        await db.remove_from_cart({ product_id, cart_id})
+        let updatedCart = await db.get_cart(user_id)
         res.send(updatedCart)
     }
 }
