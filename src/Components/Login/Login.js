@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { login } from '../../redux/reducers/userReducer'
+import { getCart } from '../../redux/reducers/cartReducer'
 
 class Login extends Component {
     constructor(props) {
@@ -20,10 +21,11 @@ class Login extends Component {
         this.setState ({ [name]: value })
     }
 
-    handleClick = () => {
+    handleClick = async () => {
         let { email, password } = this.state
 
-        this.props.login({ email, password })
+        await this.props.login({ email, password })
+        this.props.getCart()
         this.props.history.push('/')
     }
     
@@ -59,4 +61,4 @@ class Login extends Component {
     }
 }
 
-export default connect(null, { login })(Login)
+export default connect(null, { login, getCart })(Login)

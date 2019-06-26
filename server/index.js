@@ -33,3 +33,4 @@ app.get('/api/products', productsCtrl.getAllProducts)
 app.get('/api/products/:id', productsCtrl.getProduct)
 
 app.post('/api/cart/:id', cartCtrl.addToCart)
+app.get('/api/getcart', cartCtrl.getCart)

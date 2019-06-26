@@ -5,6 +5,7 @@ import axios from 'axios'
 import EmailSignup from '../EmailSignup/EmailSignup'
 import { getUser } from '../../redux/reducers/userReducer'
 import { connect } from 'react-redux'
+import { getCart } from '../../redux/reducers/cartReducer'
 
 
 class Home extends Component {
@@ -23,12 +24,13 @@ class Home extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div className="homepage">
                 <div className="homepage-masthead">
                     <div className="welcome-message">
                     {this.props.user ? 
-                        <h4>Welcome back, {this.props.user.name}!</h4>
+                        <h4>Welcome Back, {this.props.user.name}!</h4>
                         :
                         null
                     }
@@ -48,7 +50,7 @@ class Home extends Component {
                         let { product_id, product_name, price, image_url } = product
                         return (
                             <Link to={`/products/${product_id}`} key={product_id}>
-                                <div className="product" key={product_id} style={{backgroundImage: `url(${image_url})`}}>
+                                <div className="product-home" key={product_id} style={{backgroundImage: `url(${image_url})`}}>
                                     <div className="product-info-container">
                                         <div className="product-info-text">
                                             <h4 style={{width: '22px'}}>${price}</h4>
@@ -71,8 +73,9 @@ class Home extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.userReducer.data
+        user: state.userReducer.data,
+        cart: state.cartReducer.data
     }
 }
 
-export default connect(mapStateToProps, { getUser })(Home)
+export default connect(mapStateToProps, { getUser, getCart })(Home)

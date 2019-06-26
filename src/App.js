@@ -3,6 +3,7 @@ import './App.css';
 import routes from './routes'
 import { connect } from 'react-redux'
 import { getUser } from './redux/reducers/userReducer'
+import { getCart } from './redux/reducers/cartReducer'
 
 import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
@@ -10,10 +11,10 @@ import Footer from './Components/Footer/Footer'
 class App extends Component {
   componentDidMount() {
     this.props.getUser()
+    this.props.getCart()
   }
 
   render() {
-    console.log(this.props)
     return (
         <div className="App">
           <Header />
@@ -31,4 +32,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getUser })(App);
+export default connect(mapStateToProps, { getUser, getCart })(App);

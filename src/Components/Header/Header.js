@@ -24,11 +24,11 @@ class Header extends Component {
         this.setState ({ showMenu: !this.state.showMenu })
     }
 
-    logout = () => {
-        this.props.logout()
+    logout = async () => {
+        await this.props.logout()
+        this.props.clearCart()
         this.props.history.push("/")
         this.toggleMenu()
-        this.props.clearCart()
     }
 
     render() {
@@ -40,7 +40,7 @@ class Header extends Component {
                     </Link>
                     <div className="cart-menu-container">
                         <Link to="/cart">
-                            <i class="fas fa-shopping-cart" style={{fontSize: '35px', color: 'white'}}></i>
+                            <i className="fas fa-shopping-cart" style={{fontSize: '35px', color: 'white'}}></i>
                         </Link>
                         <h1 
                             className="menu-icon"

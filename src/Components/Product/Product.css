@@ -1,8 +1,60 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
 .product-image {
-    height: 608px;
-    width: 100vw;
-    background-size: cover;
+    height: 400px;
+    width: 100%;
     margin: 25px 0;
     display: flex;
     align-items: flex-end
+}
+
+.product-name-container {
+    height: 225px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 25px;
+}
+
+.guarantees-container {
+    height: 100px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 20px 0;
+}
+
+.features-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.features-column {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 200px;
+    justify-content: space-around;
+    text-align: left;
+}
+
+.specs-container {
+    height: 300px;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 55px;
+    align-items: flex-start;
+    margin-left: 40px;
 }

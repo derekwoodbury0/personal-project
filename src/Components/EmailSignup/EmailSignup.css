@@ -15,3 +15,22 @@
     justify-content: space-around;
     align-items: flex-start;
 }
+
+.email-input {
+    display: flex;
+    height: 30px;
+    width: 200px;
+    align-items: center;
+}
+
+input {
+    background: lightgray;
+    color: black;
+}
+
+.social-links {
+    width: 75vw;
+    display: flex;
+    justify-content: space-around;
+    font-size: 40px;
+}
