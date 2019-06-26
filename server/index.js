@@ -34,3 +34,4 @@ app.get('/api/products/:id', productsCtrl.getProduct)
 
 app.post('/api/cart/:id', cartCtrl.addToCart)
 app.get('/api/getcart', cartCtrl.getCart)
+app.post('/api/cart/update/:id', cartCtrl.updateQuantity)

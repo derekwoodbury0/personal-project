@@ -43,5 +43,18 @@ module.exports = {
             let cart = await db.get_cart(user_id)
             res.send(cart)
         }
+    },
+    updateQuantity: async (req, res) => {
+        let db = req.app.get('db')
+        let { user_id } = req.session.user
+        let { id: product_id } = req.params
+        let { updatedQuantity } = req.body
+        
+        let foundCarts = await db.get_cart(user_id)
+        let foundCart = foundCarts[0]
+        console.log(foundCarts)
+        foundCart.quantity = updatedQuantity
+        let updatedCart = await db.update_quantity({ quantity: updatedQuantity, product_id: product_id })
+        res.send(updatedCart)
     }
 }

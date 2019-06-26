@@ -3,8 +3,30 @@ import './Cart.css'
 import { connect } from 'react-redux'
 import { getCart } from '../../redux/reducers/cartReducer'
 import { getUser } from '../../redux/reducers/userReducer'
+import { updateCart } from '../../redux/reducers/cartReducer'
 
 class Cart extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            toggleChangeQuantity: false,
+            updatedQuantity: ''
+        }
+    }
+
+    toggleChange = () => this.setState ({ toggleChangeQuantity: !this.state.toggleChangeQuantity})
+
+    handleQuantityChange = e => {
+        this.setState ({ updatedQuantity: e.target.value })
+    }
+
+    changeQuantity = (id) => {
+        let { updatedQuantity } = this.state
+        this.toggleChange()
+        this.props.updateCart(id, {updatedQuantity})
+    }
+    
     render() {
         console.log(this.props)
         return (
@@ -26,8 +48,19 @@ class Cart extends Component {
                                         <h4>${price}</h4>
                                     </div>
                                     <div className="cart-product-quantity-container">
-                                        <h3>QTY: {quantity}</h3>
-                                        <h5 style={{marginTop: '25px'}}>Change <br /> Quantity</h5>
+                                        {this.state.toggleChangeQuantity ? 
+                                            <div>
+                                                <h3>QTY:</h3>
+                                                <input type="number" min="1" max="10" onChange={this.handleQuantityChange}/>
+                                                <h5 onClick={() => this.changeQuantity(product_id)} style={{marginTop: '25px'}}>Save</h5>
+                                            </div>
+                                            
+                                            :
+                                            <div>
+                                                <h3>QTY: {quantity}</h3>
+                                                <h5 onClick={() => this.toggleChange()} style={{marginTop: '25px'}}>Change <br /> Quantity</h5>
+                                            </div>
+                                        }
                                         <h5>&#128465;</h5>
                                     </div>
                                 </div>
@@ -56,4 +89,4 @@ const mapStateToProps = state => {
     }
   }
 
-export default connect(mapStateToProps, { getUser, getCart })(Cart)
+export default connect(mapStateToProps, { getUser, getCart, updateCart })(Cart)
