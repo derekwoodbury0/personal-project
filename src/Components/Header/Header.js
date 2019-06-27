@@ -70,6 +70,7 @@ class Header extends Component {
                             <Link to="/products">
                                 <div className="dropdown-menu-links" onClick={this.toggleMenu}>Products</div>
                             </Link>
+                            <div>Support</div>
                             {this.props.user ?
                                 <div onClick={() => this.logout()}>Logout</div>
                                 :

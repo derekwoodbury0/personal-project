@@ -19,7 +19,7 @@
     height: 75px;
     width: auto;
     margin-top: 5px;
-    margin-left: 25px;
+    padding-left: 25px;
 }
 
 .cart-menu-container {
@@ -59,6 +59,8 @@
 @media screen and (min-width: 500px) {
     .full-header {
         background: #27211F;
+        position: fixed;
+        z-index: 10;
     }
     .menu-icon {
         display: none;

@@ -1,6 +1,8 @@
-/* .homepage {
-    
-} */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 .homepage-masthead {
     background-image: url('./winding-road.jpeg');
@@ -20,7 +22,7 @@
     height: 100px;
     margin-bottom: 100px;
     margin-top: 50px;
-    margin-right: 50px;
+    /* margin-right: 50px; */
     padding-left: 45px;
     text-align: left;
     font-size: 23px
@@ -44,51 +46,68 @@
     color: white;
 }
 
-.products-page {
+.home-products {
+    width: 100vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.product-home {
-    height: 608px;
-    width: 300px;
-    background-size: cover;
-    margin: 25px 0;
-    display: flex;
-    align-items: flex-end
-}
-
-.product-info-container {
-    height: 40%;
-    width: 100%;
-    background: rgba(128, 128, 128, 0.322);
-    display: flex;
-    /* flex-direction: column; */
-    /* justify-content: center; */
-
-}
-
-.product-info-text {
-    text-decoration: none;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: left;
-    margin-left: 25px;
-}
-
-.shop-now-container {
-    border: 3px black solid;
-    width:125px;
-    height: 35px;
-    display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 50px;
+}
+
+.home-products-tarah {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 500px;
+    border-bottom: 2px gray solid;
+}
+
+.home-products-tarah-text {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80vw;
 }
 
 .welcome-message {
     position: absolute;
     top: 80px;
+    font-size: 20px;
+}
+
+@media screen and (min-width: 1000px) {
+    .homepage-masthead {
+        background-size: cover;
+        height: 600px;
+    }
+
+    .welcome-message {
+        top: 80px;
+        font-size: 40px;
+    }
+
+    .homepage-masthead-text-container {
+        font-size: 50px;
+        margin-left: 200px;
+        margin-top: 200px;
+    }
+
+    .homepage-masthead-link {
+        height: 100px;
+        width: 200px;
+        border: 7px white solid;
+        margin-right: 700px;
+        margin-top: 50px;
+    }
+
+    .home-products-tarah {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 }

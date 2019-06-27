@@ -24,7 +24,6 @@ class Home extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="homepage">
                 <div className="homepage-masthead">
@@ -44,27 +43,40 @@ class Home extends Component {
                     </Link>
                         </div>
                 </div>
-                <div className="products-page">
-                    <div style={{height: '75px'}}></div>
-                    {this.state.products.map(product => {
-                        let { product_id, product_name, price, image_url } = product
-                        return (
-                            <Link to={`/products/${product_id}`} key={product_id}>
-                                <div className="product-home" key={product_id} style={{backgroundImage: `url(${image_url})`}}>
-                                    <div className="product-info-container">
-                                        <div className="product-info-text">
-                                            <h4 style={{width: '22px'}}>${price}</h4>
-                                            <h1>{product_name}</h1>
-                                            <div className="shop-now-container">
-                                                <p>Shop Now &rarr;</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                <div className="home-products">
+                <div className="home-products-tarah">
+                        <img src="https://3v718laqyo244ii5v20dg6ff-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/5-Runners-Share-Their-Morning-Routines-Rachel.jpg" alt="" height="200" width="300" />
+                        <div className="home-products-tarah-text">
+                            <h1>Tarah Pro</h1>
+                            <h2 style={{marginBottom: '40px'}}>Epic Endurance</h2>
+                            <Link to="/products/2" >
+                                <h2 style={{color: 'white'}}>Shop Now &rarr;</h2>
                             </Link>
-                        )
-                    })}
+                        </div>
+                    </div>
+                    <div className="home-products-tarah">
+                        <img src="https://wmimg.azureedge.net/public/img/articles/why-are-east-african-runners-so-dominant-/why-are-east-african-runners-so-dominant-.jpg" alt="" height="200" width="300" />
+                        <div className="home-products-tarah-text">
+                            <h1>Run XT</h1>
+                            <h2 style={{marginBottom: '40px'}}>Run Redefined</h2>
+                            <Link to="/products/3" >
+                                <h2 style={{color: 'white'}}>Shop Now &rarr;</h2>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="home-products-tarah">
+                        <img src="http://www.runnersblueprint.com/wp-content/uploads/2014/07/Strength-Training-For-Runners.jpg" alt="" height="200" width="300" />
+                        <div className="home-products-tarah-text">
+                            <h1>X4</h1>
+                            <h2 style={{marginBottom: '40px'}}>Rugged Versatility</h2>
+                            <Link to="/products/4" >
+                                <h2 style={{color: 'white'}}>Shop Now &rarr;</h2>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
+                
                 <EmailSignup />
             </div>
         )

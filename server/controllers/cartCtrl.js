@@ -52,8 +52,9 @@ module.exports = {
         
         let foundCarts = await db.get_cart(user_id)
         let foundCart = foundCarts[0]
+        let { cart_id } = foundCart
         foundCart.quantity = updatedQuantity
-        await db.update_quantity({ quantity: updatedQuantity, product_id: product_id })
+        await db.update_quantity({ quantity: updatedQuantity, product_id, cart_id })
         let updatedCart = await db.get_cart(user_id)
         res.send(updatedCart)
     },
