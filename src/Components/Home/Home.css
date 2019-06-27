@@ -46,6 +46,30 @@
     color: white;
 }
 
+.power-your-passion-container {
+    height: 300px;
+    width: 100vw;
+    display: flex;
+    justify-content: center; 
+    align-items: center;   
+}
+
+.power-your-passion-text {
+    font-size: 30px;
+    text-align: left;
+    width: 90%;
+}
+
+.power-your-passion-text h1 {
+    font-weight: 700;
+    line-height: 75px;
+}
+
+.power-your-passion-text h6 {
+    font-size: 13px;
+    /* padding-left: 25px; */
+}
+
 .home-products {
     width: 100vw;
     display: flex;
@@ -63,6 +87,11 @@
     justify-content: space-evenly;
     height: 500px;
     border-bottom: 2px gray solid;
+}
+
+.home-products-tarah-image {
+    height: 200px;
+    width: 300px;
 }
 
 .home-products-tarah-text {
@@ -105,9 +134,50 @@
         margin-top: 50px;
     }
 
+    .power-your-passion-container {
+        margin-top: 50px;
+    }
+
+    .power-your-passion-text {
+        width: 75%;
+    }
+
+    .power-your-passion-text h1 {
+        font-size: 90px;
+        line-height: 125%;
+        letter-spacing: 3px;
+    }
+
+    .power-your-passion-text h6 {
+        font-size: 20px;
+        padding-left: 200px;
+        letter-spacing: -1px;
+    }
+
     .home-products-tarah {
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+    }
+
+    .home-products-tarah-image {
+        height: 75%;
+        width: 50%;
+    }
+
+    .home-products-tarah-text {
+        width: auto;
+        height: 60%;
+        padding-right: 15%;
+    }
+
+    .home-products-tarah-text h1 {
+        font-size: 55px;
+        padding-top: 15%;
+    }
+
+    .home-products-tarah-text h2 {
+        font-size: 40px;
+        padding-bottom: 5%;
     }
 }

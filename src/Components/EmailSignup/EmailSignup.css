@@ -8,12 +8,21 @@
 }
 
 .email-signup-container {
-    height: 90%;
+    height: 60%;
     width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
+    text-align: left;
+}
+
+.follow-us-container {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .email-input {
@@ -23,7 +32,9 @@
     align-items: center;
 }
 
-input {
+.email-signup-box {
+    height: 30px;
+    width: 250px;
     background: lightgray;
     color: black;
 }
@@ -33,4 +44,47 @@ input {
     display: flex;
     justify-content: space-around;
     font-size: 40px;
+    padding-top: 50px;
+}
+
+@media screen and (min-width: 1000px) {
+    .email-signup-full {
+        display: flex;
+        width: 100vw;
+        justify-content: center;
+    }
+    
+    .email-signup {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 60vw;
+    }
+
+    .email-signup-container {
+        height: 350px;
+        width: 300px;
+    }
+
+    .email-signup-container h1 {
+        font-size: 50px;
+        letter-spacing: 2px;
+    }
+
+    .follow-us-container {
+        width: 300px;
+    }
+
+    .follow-us-container h1 {
+        font-size: 45px;
+        letter-spacing: 2px;
+    }
+
+    .follow-us-container h3 {
+        font-size: 30px;
+    }
+
+    .social-links {
+        width: 300px;
+        justify-content: space-between;
+    }
 }

@@ -44,29 +44,36 @@ class Home extends Component {
                         </div>
                 </div>
 
+                <div className="power-your-passion-container">
+                    <div className="power-your-passion-text">
+                        <h1>Power Your<br /> Passion.</h1>
+                        <h6>High-Performance Wireless Audio For Athletes.</h6>
+                    </div>
+                </div>
+
                 <div className="home-products">
-                <div className="home-products-tarah">
-                        <img src="https://3v718laqyo244ii5v20dg6ff-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/5-Runners-Share-Their-Morning-Routines-Rachel.jpg" alt="" height="200" width="300" />
+                <div className="home-products-tarah" style={{borderTop: '1px gray solid'}}>
+                        <img src="https://3v718laqyo244ii5v20dg6ff-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/5-Runners-Share-Their-Morning-Routines-Rachel.jpg" alt="" className="home-products-tarah-image" />
                         <div className="home-products-tarah-text">
                             <h1>Tarah Pro</h1>
-                            <h2 style={{marginBottom: '40px'}}>Epic Endurance</h2>
+                            <h2 style={{marginBottom: '40px'}}>Epic Endurance &emsp;</h2>
                             <Link to="/products/2" >
                                 <h2 style={{color: 'white'}}>Shop Now &rarr;</h2>
                             </Link>
                         </div>
                     </div>
                     <div className="home-products-tarah">
-                        <img src="https://wmimg.azureedge.net/public/img/articles/why-are-east-african-runners-so-dominant-/why-are-east-african-runners-so-dominant-.jpg" alt="" height="200" width="300" />
+                        <img src="https://wmimg.azureedge.net/public/img/articles/why-are-east-african-runners-so-dominant-/why-are-east-african-runners-so-dominant-.jpg" alt="" className="home-products-tarah-image"  />
                         <div className="home-products-tarah-text">
                             <h1>Run XT</h1>
-                            <h2 style={{marginBottom: '40px'}}>Run Redefined</h2>
+                            <h2 style={{marginBottom: '40px'}}>Run Redefined &emsp;&nbsp;&nbsp;</h2>
                             <Link to="/products/3" >
                                 <h2 style={{color: 'white'}}>Shop Now &rarr;</h2>
                             </Link>
                         </div>
                     </div>
                     <div className="home-products-tarah">
-                        <img src="http://www.runnersblueprint.com/wp-content/uploads/2014/07/Strength-Training-For-Runners.jpg" alt="" height="200" width="300" />
+                        <img src="http://www.runnersblueprint.com/wp-content/uploads/2014/07/Strength-Training-For-Runners.jpg" alt="" className="home-products-tarah-image"  />
                         <div className="home-products-tarah-text">
                             <h1>X4</h1>
                             <h2 style={{marginBottom: '40px'}}>Rugged Versatility</h2>
@@ -76,7 +83,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
-                
+
                 <EmailSignup />
             </div>
         )

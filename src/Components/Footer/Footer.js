@@ -10,7 +10,7 @@ class Footer extends Component {
                 <div className="footer-links-container">
                     <div className="footer-text-top-half">
                         <h3>Shop</h3>
-                        <h3 style={{marginTop: '35px'}}>Support</h3>
+                        <h3 className="footer-support">Support</h3>
                     </div>
                     <div className="footer-text-bottom-half">
                         <h5>Compliance Certificates</h5>
