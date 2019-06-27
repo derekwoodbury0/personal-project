@@ -9,7 +9,7 @@
     width: 100vw;
     display: flex;
     color: white;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     position: absolute;
 }
@@ -19,6 +19,7 @@
     height: 75px;
     width: auto;
     margin-top: 5px;
+    margin-left: 25px;
 }
 
 .cart-menu-container {
@@ -26,6 +27,7 @@
     align-items: center;
     justify-content: space-between;
     width: 115px;
+    margin-right: 25px;
 }
 
 .menu-icon {
@@ -48,16 +50,23 @@
     color: white;
 }
 
+.nav-links-full-page {
+    display: none;
+}
+
 
 
 @media screen and (min-width: 500px) {
     .full-header {
-        background: black;
+        background: #27211F;
     }
     .menu-icon {
         display: none;
     }
-    .dropdown-menu {
-        
+    .nav-links-full-page {
+        display: flex;
+        width: 40vw;
+        justify-content: space-between;
+        margin-right: 25vw;
     }
 }

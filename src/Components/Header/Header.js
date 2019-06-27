@@ -28,7 +28,7 @@ class Header extends Component {
         await this.props.logout()
         this.props.clearCart()
         this.props.history.push("/")
-        this.toggleMenu()
+        this.setState ({ showMenu: false })
     }
 
     render() {
@@ -38,6 +38,21 @@ class Header extends Component {
                     <Link to="/">
                         <img className="logo" src={logo} alt="logo" />
                     </Link>
+
+                    <div className="nav-links-full-page">
+                        <Link to="/products">
+                            <h2 style={{color: 'white'}}>Products</h2>
+                        </Link>
+                        <h2 style={{color: 'white'}}>Support</h2>
+                        {this.props.user ?
+                            <h2 onClick={() => this.logout()} style={{color: 'white'}}>Logout</h2>
+                            :
+                            <Link to="/login">
+                                <h2 style={{color: 'white'}}>Login</h2>
+                            </Link>
+                        }
+                    </div>
+
                     <div className="cart-menu-container">
                         <Link to="/cart">
                             <i className="fas fa-shopping-cart" style={{fontSize: '35px', color: 'white'}}></i>

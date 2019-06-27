@@ -99,7 +99,8 @@ class Cart extends Component {
 const mapStateToProps = state => {
     return {
       user: state.userReducer.data,
-      cart: state.cartReducer.data
+      cart: state.cartReducer.data,
+      cartLoading: state.cartReducer.loading
     }
   }
 
