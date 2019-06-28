@@ -11,8 +11,8 @@ class Cart extends Component {
         super(props)
 
         this.state = {
-            toggleChangeQuantity: false,
-            updatedQuantity: '',
+            // toggleChangeQuantity: false,
+            // updatedQuantity: '',
             total: 0
         }
     }
@@ -32,15 +32,15 @@ class Cart extends Component {
         }
     }
 
-    toggleChange = () => this.setState ({ toggleChangeQuantity: !this.state.toggleChangeQuantity})
+    // toggleChange = () => this.setState ({ toggleChangeQuantity: !this.state.toggleChangeQuantity})
 
-    handleQuantityChange = e => {
-        this.setState ({ updatedQuantity: e.target.value })
-    }
+    // handleQuantityChange = e => {
+    //     this.setState ({ updatedQuantity: e.target.value })
+    // }
     
-    changeQuantity = async (id) => {
-        let { updatedQuantity } = this.state
-        this.toggleChange()
+    changeQuantity = async (id, e) => {
+        let { value } = e.target
+        let updatedQuantity = +value
         await this.props.updateCart(id, {updatedQuantity})
         this.getTotal()
     }
@@ -85,7 +85,7 @@ class Cart extends Component {
                                             <h4>${price}</h4>
                                         </div>
                                         <div className="cart-product-quantity-container">
-                                            {this.state.toggleChangeQuantity ? 
+                                            {/* {this.state.toggleChangeQuantity ? 
                                                 <div>
                                                     <h3>QTY:</h3>
                                                     <input type="number" min="1" max="10" 
@@ -98,12 +98,24 @@ class Cart extends Component {
                                                     <h5 onClick={() => this.toggleChange()}>Cancel</h5>
                                                 </div>
                                                 
-                                                :
+                                                : */}
                                                 <div>
-                                                    <h3>QTY: {quantity}</h3>
-                                                    <h5 onClick={() => this.toggleChange()} style={{marginTop: '25px'}}>Change <br /> Quantity</h5>
+                                                    {/* <h3>QTY: {quantity}</h3> */}
+                                                    <h3>QTY: <select defaultValue={quantity} onChange={(event) => this.changeQuantity(product_id, event)}>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option>6</option>
+                                                        <option>7</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                    </select></h3>
+                                                    {/* <h5 onClick={() => this.toggleChange()} style={{marginTop: '25px'}}>Change <br /> Quantity</h5> */}
                                                 </div>
-                                            }
+                                            {/* } */}
                                             <h5 onClick={() => this.removeFromCart(product_id)}>&#128465;</h5>
                                         </div>
                                     </div>
