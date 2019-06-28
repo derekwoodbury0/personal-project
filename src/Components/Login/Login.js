@@ -28,6 +28,16 @@ class Login extends Component {
         this.props.getCart()
         this.props.history.push('/')
     }
+
+    keyPressed = async e => {
+        if (e.key === "Enter") {
+            let {email, password } = this.state
+
+            await this.props.login({email, password})
+            this.props.getCart()
+            this.props.history.push('/')
+        }
+    }
     
     render() {
         return (
@@ -40,12 +50,14 @@ class Login extends Component {
                             name="email"
                             onChange={this.handleChange}
                             type="text"
+                            autoComplete="off"
                             />
                         <input 
                             placeholder="password"
                             name="password"
                             onChange={this.handleChange}
                             type="password"
+                            onKeyPress={(e) => this.keyPressed(e)}
                             />
                         <button onClick={this.handleClick}>Login</button>
                     </div>
