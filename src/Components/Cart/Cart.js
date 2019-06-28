@@ -57,25 +57,29 @@ class Cart extends Component {
         let { total } = this.state
         let totalCents = total * 100
         token.card = void 0
-        axios.post('/api/payment', {token, amount: totalCents }).then (res => {
-            alert('Congratulations! Headphones are on the way!')
-        })
+        axios.post('/api/payment', {token, amount: totalCents })
         this.props.history.push('/confirmation')
     }
     
     render() {
-        console.log(this.props)
         return (
             <div className="full-cart">
                 <div style={{height: '75px'}}></div>
                 <div className="cart-header">
-                    {this.props.cart[0] ?
+                    {this.props.user && this.props.cartLoading ?
+                    <div className="loader-container"><Loader /></div>
+                    :
+                    this.props.cart[0] && this.props.user ?
                     <h1>Your Shopping Cart</h1>
                     :
+                    this.props.user ?
                     <h1>Your Cart Is Currently Empty</h1>
+                    :
+                    <h1>Please Log In To View Cart</h1>
                 }
                 </div>
-                {this.props.cartLoading ? <div className="loader-container"><Loader /></div> : 
+                    {this.props.cartLoading ? null 
+                    :
                     <div>
                         {this.props.cart.map(product => {
                             let {product_name, product_id, image_url, price, quantity} = product
@@ -90,7 +94,6 @@ class Cart extends Component {
                                         </div>
                                         <div className="cart-product-quantity-container">
                                                 <div>
-                                                    {/* <h3>QTY: {quantity}</h3> */}
                                                     <h3>QTY: <select style={{background: 'white'}} defaultValue={quantity} onChange={(event) => this.changeQuantity(product_id, event)}>
                                                         <option>1</option>
                                                         <option>2</option>
@@ -103,9 +106,7 @@ class Cart extends Component {
                                                         <option>9</option>
                                                         <option>10</option>
                                                     </select></h3>
-                                                    {/* <h5 onClick={() => this.toggleChange()} style={{marginTop: '25px'}}>Change <br /> Quantity</h5> */}
                                                 </div>
-                                            {/* } */}
                                             <h5 style={{fontSize: '25px'}} onClick={() => this.removeFromCart(product_id)}>&#128465;</h5>
                                         </div>
                                     </div>
@@ -113,7 +114,7 @@ class Cart extends Component {
                             )
                         })}
                     </div>
-                }
+                    }
                 <div className="subtotal-full-container">
                     <h5 style={{color: 'gray', paddingTop: '50px', textDecoration: 'underline'}}>Add Promo Code</h5>
                     <div className="subtotal-container">

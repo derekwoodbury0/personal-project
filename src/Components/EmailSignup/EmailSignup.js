@@ -43,6 +43,7 @@ class EmailSignup extends Component {
                                 placeholder="Enter Name" 
                                 name="name"
                                 value={this.state.name}
+                                autoComplete="off"
                                 />
                             <input 
                                 className="email-signup-box" 
@@ -50,6 +51,7 @@ class EmailSignup extends Component {
                                 placeholder="Enter Email Here" 
                                 name="email"
                                 value={this.state.email}
+                                autoComplete="off"
                                 />
                             {this.state.submit ?
                             <h1 className="email-submitted-check">&#10003;</h1>

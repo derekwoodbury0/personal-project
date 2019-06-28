@@ -9,7 +9,8 @@ class Product extends Component {
         super(props)
 
         this.state = {
-            product: []
+            product: [],
+            addedToCart: false
         }
     }
 
@@ -21,6 +22,7 @@ class Product extends Component {
 
     addToCart = (id) => {
         this.props.addToCart(id)
+        this.setState ({ addedToCart: true})
     }
 
     render() {
@@ -39,7 +41,11 @@ class Product extends Component {
                                         <div>&#9733; &#9733; &#9733; &#9733; &#9733;</div>
                                         <h3>${price}</h3>
                                         <h6>Wireless Sport Headphones</h6>
-                                        <button onClick={() => this.addToCart(product_id)}>Add To Cart</button>
+                                        {this.state.addedToCart ? 
+                                            <button style={{color: 'limegreen'}}>&#10003; Added To Cart</button>
+                                        :
+                                            <button onClick={() => this.addToCart(product_id)}>Add To Cart</button>
+                                        }
                                     </div>
                                     <div style={{ width: '90%', height: '1px', border: '1px gray solid'}}></div>
                                     <div className="guarantees-container">
