@@ -5,14 +5,13 @@ import { getUser } from '../../redux/reducers/userReducer'
 import { updateCart, getCart, removeFromCart } from '../../redux/reducers/cartReducer'
 import StripeCheckout from 'react-stripe-checkout'
 import Loader from '../Loader/Loader'
+import axios from 'axios'
 
 class Cart extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            // toggleChangeQuantity: false,
-            // updatedQuantity: '',
             total: 0
         }
     }
@@ -31,12 +30,6 @@ class Cart extends Component {
             this.getTotal()
         }
     }
-
-    // toggleChange = () => this.setState ({ toggleChangeQuantity: !this.state.toggleChangeQuantity})
-
-    // handleQuantityChange = e => {
-    //     this.setState ({ updatedQuantity: e.target.value })
-    // }
     
     changeQuantity = async (id, e) => {
         let { value } = e.target
@@ -59,8 +52,19 @@ class Cart extends Component {
         })
         this.setState ({ total: sum })
     }
+
+    onToken = (token) => {
+        let { total } = this.state
+        let totalCents = total * 100
+        token.card = void 0
+        axios.post('/api/payment', {token, amount: totalCents }).then (res => {
+            alert('Congratulations! Headphones are on the way!')
+        })
+        this.props.history.push('/confirmation')
+    }
     
     render() {
+        console.log(this.props)
         return (
             <div className="full-cart">
                 <div style={{height: '75px'}}></div>
@@ -85,28 +89,14 @@ class Cart extends Component {
                                             <h4>${price}</h4>
                                         </div>
                                         <div className="cart-product-quantity-container">
-                                            {/* {this.state.toggleChangeQuantity ? 
-                                                <div>
-                                                    <h3>QTY:</h3>
-                                                    <input type="number" min="1" max="10" 
-                                                        onChange={this.handleQuantityChange}
-                                                    />
-                                                    <h5 onClick={() => this.changeQuantity(product_id)} 
-                                                        style={{marginTop: '25px'}}
-                                                        >Save
-                                                    </h5>
-                                                    <h5 onClick={() => this.toggleChange()}>Cancel</h5>
-                                                </div>
-                                                
-                                                : */}
                                                 <div>
                                                     {/* <h3>QTY: {quantity}</h3> */}
-                                                    <h3>QTY: <select defaultValue={quantity} onChange={(event) => this.changeQuantity(product_id, event)}>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
+                                                    <h3>QTY: <select style={{background: 'white'}} defaultValue={quantity} onChange={(event) => this.changeQuantity(product_id, event)}>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
                                                         <option>6</option>
                                                         <option>7</option>
                                                         <option>8</option>
@@ -116,7 +106,7 @@ class Cart extends Component {
                                                     {/* <h5 onClick={() => this.toggleChange()} style={{marginTop: '25px'}}>Change <br /> Quantity</h5> */}
                                                 </div>
                                             {/* } */}
-                                            <h5 onClick={() => this.removeFromCart(product_id)}>&#128465;</h5>
+                                            <h5 style={{fontSize: '25px'}} onClick={() => this.removeFromCart(product_id)}>&#128465;</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +126,12 @@ class Cart extends Component {
                         label="Checkout Now" 
                         name="Jaybird Checkout"
                         amount={this.state.total * 100 }
-                        token="token"
+                        token={this.onToken}
+                        stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
+                        currency='USD'
+                        allowRememberMe = {false}
+                        locale="en"
+                        zipCode={true}
                     />
                 </div>
             </div>

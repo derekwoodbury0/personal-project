@@ -1,0 +1,29 @@
+.confirmation-page {
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirmation-page-text-container {
+    height: calc(65vh - 75px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 25px;
+}
+
+.confirmation-page-text-container h1 {
+    font-size: 50px;
+    margin-bottom: 75px;
+}
+
+.confirmation-page-text-container h3 {
+    font-size: 25px;
+}
+
+@media screen and (min-width: 1000px) {
+    .confirmation-page {
+        height: calc(100vh - 200px)
+    }
+}

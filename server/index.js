@@ -7,6 +7,7 @@ let session = require('express-session')
 let productsCtrl = require('./controllers/productsCtrl')
 let cartCtrl = require('./controllers/cartCtrl')
 let emailCtrl = require('./controllers/emailCtrl')
+let payCtrl = require('./controllers/payCtrl')
 
 let { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
@@ -39,3 +40,5 @@ app.put('/api/cart/update/:id', cartCtrl.updateQuantity)
 app.delete('/api/cart/remove/:id', cartCtrl.removeFromCart)
 
 app.post('/email/send', emailCtrl.sendEmail)
+
+app.post('/api/payment', payCtrl.pay)
