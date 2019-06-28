@@ -61,9 +61,8 @@ class Cart extends Component {
     }
     
     render() {
-        console.log(this.state)
         return (
-            <div>
+            <div className="full-cart">
                 <div style={{height: '75px'}}></div>
                 <div className="cart-header">
                     {this.props.cart[0] ?
@@ -124,6 +123,8 @@ class Cart extends Component {
                     <StripeCheckout 
                         label="Checkout Now" 
                         name="Jaybird Checkout"
+                        amount={this.state.total * 100 }
+                        token="token"
                     />
                 </div>
             </div>

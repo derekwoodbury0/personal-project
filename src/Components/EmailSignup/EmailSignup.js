@@ -1,31 +1,62 @@
 import React, { Component } from 'react'
 import './EmailSignup.css'
+import axios from 'axios'
 
 class EmailSignup extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            email: []
+            name: '',
+            email: '',
+            submit: false
         }
     }
 
     handleChange = (e) => {
-        this.setState ({ email: e.target.value })
+        let { name, value } = e.target
+        this.setState ({ [name]: value })
+    }
+
+    handleClick = () => {
+        axios.post('/email/send', this.state)
+        this.setState ({ name: '', email: '', submit: true})
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className="email-signup-full">
                 <div className="email-signup">
                     <div className="email-signup-container">
                         <h1 style={{paddingTop: '40px'}}>Don't Miss A Beat</h1>
                         <h5 style={{paddingBottom: '40px'}}>Sign up to receive exclusive updates and offers</h5>
-                        <div className="email-input">
-                            <input className="email-signup-box" onChange={this.handleChange} placeholder="Enter Email Here" />
-                            <h1 style={{fontSize: '65px', marginBottom: '3px'}}>&#9993;</h1>
-                        </div>
                     </div>
+                        <div className="email-input">
+                            <input 
+                                className="email-signup-box" 
+                                onChange={this.handleChange} 
+                                placeholder="Enter Name" 
+                                name="name"
+                                value={this.state.name}
+                            />
+                            <input 
+                                className="email-signup-box" 
+                                onChange={this.handleChange} 
+                                placeholder="Enter Email Here" 
+                                name="email"
+                                value={this.state.email}
+                            />
+                            {this.state.submit ?
+                            <h1 className="email-submitted-check">&#10003;</h1>
+                            :
+                            <h1 
+                                className="email-submit-button"
+                                onClick={this.handleClick}
+                            >
+                                    &#9993;</h1>
+                            }
+                        </div>
                     <div className="follow-us-container">
                         <h1>Follow Us</h1>
                         <h3>#poweryourpassion</h3>

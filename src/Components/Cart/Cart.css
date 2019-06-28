@@ -1,3 +1,7 @@
+.full-cart {
+    overflow-x: hidden;
+}
+
 .cart-header {
     height: 200px;
     /* width: 100%; */

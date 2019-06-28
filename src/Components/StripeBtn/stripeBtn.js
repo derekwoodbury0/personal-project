@@ -11,15 +11,15 @@ const stripeBtn = () => {
             token: token
         }
     }
-}
-
-return (
-    <StripeCheckout
+    
+    return (
+        <StripeCheckout
         label="Checkout Now"
         name="Jaybird Checkout"
-        token = {onToken}
-        stripeKey={publishableKey}
-    />
-)
+        token = {this.onToken}
+        stripeKey={this.publishableKey}
+        />
+        )
+    }
 
 export default stripeBtn

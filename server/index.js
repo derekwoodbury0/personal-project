@@ -6,6 +6,7 @@ let authCtrl = require('./controllers/authCtrl')
 let session = require('express-session')
 let productsCtrl = require('./controllers/productsCtrl')
 let cartCtrl = require('./controllers/cartCtrl')
+let emailCtrl = require('./controllers/emailCtrl')
 
 let { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
@@ -36,3 +37,5 @@ app.post('/api/cart/:id', cartCtrl.addToCart)
 app.get('/api/getcart', cartCtrl.getCart)
 app.put('/api/cart/update/:id', cartCtrl.updateQuantity)
 app.delete('/api/cart/remove/:id', cartCtrl.removeFromCart)
+
+app.post('/email/send', emailCtrl.sendEmail)

@@ -1,5 +1,5 @@
 .email-signup {
-    height: 436px;
+    height: 536px;
     width: 100vw;
     /* background: black; */
     display: flex;
@@ -8,7 +8,7 @@
 }
 
 .email-signup-container {
-    height: 60%;
+    height: 35%;
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -27,9 +27,11 @@
 
 .email-input {
     display: flex;
-    height: 30px;
-    width: 200px;
+    flex-direction: column;
+    height: 60px;
+    width: 80%;
     align-items: center;
+    z-index: 10;
 }
 
 .email-signup-box {
@@ -37,6 +39,21 @@
     width: 250px;
     background: lightgray;
     color: black;
+}
+
+.email-submit-button {
+    font-size: 65px;
+    margin-bottom: 3px;
+}
+
+.email-submit-button:hover {
+    color: lightblue;
+}
+
+.email-submitted-check {
+    color: lightgreen;
+    padding-top: 15px;
+    font-size: 40px;
 }
 
 .social-links {

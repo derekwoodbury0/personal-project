@@ -49,7 +49,7 @@ class Login extends Component {
                             />
                         <button onClick={this.handleClick}>Login</button>
                     </div>
-                    <div className="register-container">
+                    <div className="register-container-login">
                         <h6>Don't Have An Account?</h6>
                         <Link to="/register">
                             <button>Register Now</button>

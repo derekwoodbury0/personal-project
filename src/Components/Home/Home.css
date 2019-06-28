@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+.homepage {
+    overflow-x: hidden;
+}
+
 .homepage-masthead {
     background-image: url('./winding-road.jpeg');
     height: 650px;
@@ -156,19 +160,20 @@
 
     .home-products-tarah {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
     }
 
     .home-products-tarah-image {
         height: 75%;
-        width: 50%;
+        width: 600px;
     }
 
     .home-products-tarah-text {
         width: auto;
         height: 60%;
-        padding-right: 15%;
+        /* padding-right: 15%; */
+        padding-left: 10%;
     }
 
     .home-products-tarah-text h1 {
