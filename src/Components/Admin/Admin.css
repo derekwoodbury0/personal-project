@@ -2,6 +2,17 @@
     height: 100vh;
 }
 
+.main-header {
+    font-size: 45px;
+    margin-bottom: 75px;
+}
+
+.headers {
+    text-align: left;
+    padding-left: 50px;
+    margin: 40px 0;
+}
+
 .admin-users-container {
     display: flex;
     flex-direction: column;
@@ -18,4 +29,17 @@
     justify-content: space-between;
     padding-left: 25px;
     text-align: left;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+
+.admin-order-container {
+    width: 90vw;
+    border: 1px gray solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 25px;
+    text-align: left;
+    height: 200px;
 }

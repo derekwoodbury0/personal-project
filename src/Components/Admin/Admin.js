@@ -1,55 +1,100 @@
 import React, { Component } from 'react'
 import './Admin.css'
 import { getUser } from '../../redux/reducers/userReducer'
-import { getOrders, getUsers} from '../../redux/reducers/adminReducer'
+import { getOrders, getUsers, changeAdmin, deleteUser } from '../../redux/reducers/adminReducer'
 import { connect } from 'react-redux'
 
 class Admin extends Component {
+    constructor() {
+        super()
+
+        this.state = {
+            showUsers: false,
+            showOrders: false
+        }
+    }
+
     componentDidMount() {
         this.props.getOrders()
         this.props.getUsers()
     }
 
+    toggleShowUsers = () => {
+        this.setState({ showUsers: !this.state.showUsers })
+    }
+
+    toggleShowOrders = () => {
+        this.setState ({ showOrders: !this.state.showOrders })
+    }
+
+    changeAdmin = userInfo => {
+        this.props.changeAdmin(userInfo)
+    }
+
+    deleteUser = user_id => {
+        this.props.deleteUser(user_id)
+    }
+
     render() {
-        console.log(this.props)
         return (
-            <div>
+            <div className="admin-page">
                 <div>
                     <div style={{height: '75px'}}></div>
-                    <h1>Admin Page</h1>
+                    <h1 className="main-header">Admin Page</h1>
                 </div>
                 {this.props.isAdmin && this.props.user ?
                     <div>
-                        <h1>All Users &#9658;</h1>
-                        <div className="admin-users-container">
-                            {this.props.users.map(user => {
-                                return (
-                                    <div className="admin-user-container">
-                                        <h3>Name: {user.name}</h3>
-                                        <h3>Email: {user.email}</h3>
-                                        <h3>Admin Permissions: {user.is_admin ? 'Yes' : 'No'}</h3>
-                                        <div>
-                                            <button>Change Admin Status</button>
-                                            <button>Delete User</button>
+                        <h1 onClick={() => this.toggleShowUsers()} className="headers">All Users &nbsp;
+                            {this.state.showUsers ?
+                                <span style={{fontSize: '20px'}}>&#9660;</span>
+                                :
+                                <span style={{fontSize: '20px'}}>&#9658;</span>
+                            }
+                        </h1>
+                        {this.state.showUsers ?
+                            <div className="admin-users-container">
+                                {this.props.users.map(user => {
+                                    return (
+                                        <div className="admin-user-container">
+                                            <h3><span style={{textDecoration: 'underline'}}>Name</span>: {user.name}</h3>
+                                            <h3><span style={{textDecoration: 'underline'}}>Email</span>: {user.email}</h3>
+                                            <h3><span style={{textDecoration: 'underline'}}>Admin Access</span>: {user.is_admin ? 'Yes' : 'No'}</h3>
+                                            <h3><span style={{textDecoration: 'underline'}}>User ID</span>: {user.user_id}</h3>
+                                            <div>
+                                                <button onClick={() => this.changeAdmin(user)} style={{marginRight: '15px'}}>Change Admin Access</button>
+                                                <button onClick={() => this.deleteUser(user.user_id)}>Delete User</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                        <h1>All Orders</h1>
-                        <div>
-                            {this.props.orders.map(order => {
-                                return (
-                                    <div>
-                                        <h3>{order.order_id}</h3>
-                                        <h3>{order.name}</h3>
-                                        <h3>{order.email}</h3>
-                                        <h3>{order.product_name}</h3>
-                                        <h3>{order.quantity}</h3>
-                                    </div>
-                                )
-                            })}
-                        </div>
+                                    )
+                                })}
+                            </div>
+                            :
+                            null
+                        }
+                        <h1 onClick={() => this.toggleShowOrders()} className="headers">All Orders &nbsp;
+                            {this.state.showOrders ?
+                                <span style={{fontSize: '20px'}}>&#9660;</span>
+                                :
+                                <span style={{fontSize: '20px'}}>&#9658;</span>
+                            }
+                        </h1>
+                        {this.state.showOrders ?
+                            <div className="admin-users-container">
+                                {this.props.orders.map(order => {
+                                    return (
+                                        <div className="admin-order-container">
+                                            <h3>Order Number: {order.order_id}</h3>
+                                            <h3>Order Name: {order.name}</h3>
+                                            <h3>Order Email: {order.email}</h3>
+                                            <h3>Product Ordered: {order.product_name}</h3>
+                                            <h3>Product Quantity: {order.quantity}</h3>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            :
+                            null
+                        }
                     </div>
                     :
                     <h1 className="no-admin-access">Please Log In As Admin To Access This Page</h1>
@@ -68,4 +113,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect( mapStateToProps, { getUser, getOrders, getUsers })(Admin)
+export default connect( mapStateToProps, { getUser, getOrders, getUsers, changeAdmin, deleteUser })(Admin)

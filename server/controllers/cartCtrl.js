@@ -31,9 +31,6 @@ module.exports = {
             
             let cart = await db.get_cart(user_id)
             
-            // let products = await db.get_product(id)
-            // let product = products[0]
-            
             res.send(cart)
     },
     getCart: async (req, res) => {

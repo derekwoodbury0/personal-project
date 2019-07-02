@@ -49,3 +49,5 @@ app.post('/api/orders/create', orderCtrl.completeOrder)
 
 app.get('/api/admin/orders', adminCtrl.getOrders)
 app.get('/api/admin/users', adminCtrl.getUsers)
+app.put('/api/admin/changeadmin', adminCtrl.changeAdmin)
+app.delete('/api/admin/deleteuser/:id', adminCtrl.deleteUser)

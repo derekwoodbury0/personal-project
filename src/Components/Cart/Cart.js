@@ -53,12 +53,13 @@ class Cart extends Component {
         this.setState ({ total: sum })
     }
 
-    onToken = (token) => {
+    onToken = async (token) => {
         let { total } = this.state
         let totalCents = total * 100
         token.card = void 0
         axios.post('/api/payment', {token, amount: totalCents })
-        axios.post('/api/orders/create')
+        await axios.post('/api/orders/create')
+        this.props.getCart()
         this.props.history.push('/confirmation')
     }
     

@@ -9,6 +9,7 @@ module.exports = {
             let { product_id, quantity } = product
             db.create_order({user_id, product_id, order_id, quantity})
         })
-        db.erase_cart(cart.cart_id)
+        await db.erase_cart(cart.cart_id)
+        res.send('success')
     }
 }
