@@ -8,6 +8,7 @@ import Register from './Components/Register/Register'
 import Cart from './Components/Cart/Cart'
 import Checkout from './Components/Checkout/Checkout'
 import Confirmation from './Components/Confirmation/Confirmation'
+import Admin from './Components/Admin/Admin'
 
 export default (
     <Switch>
@@ -18,5 +19,6 @@ export default (
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/confirmation" component={Confirmation} />
+        <Route path="/Admin" component={Admin}/>
     </Switch>
 )

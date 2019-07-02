@@ -27,6 +27,12 @@ class EmailSignup extends Component {
         }
     }
 
+    keyPressed = (e) => {
+        if (e.key === 'Enter') {
+            this.handleClick()
+        }
+    }
+
     render() {
         return (
             <div className="email-signup-full">
@@ -52,6 +58,7 @@ class EmailSignup extends Component {
                                 name="email"
                                 value={this.state.email}
                                 autoComplete="off"
+                                onKeyPress={event => this.keyPressed(event)}
                                 />
                             {this.state.submit ?
                             <h1 className="email-submitted-check">&#10003;</h1>
@@ -59,8 +66,7 @@ class EmailSignup extends Component {
                             <h1 
                             className="email-submit-button"
                             onClick={this.handleClick}
-                            >
-                                    &#9993;</h1>
+                            >&#9993;</h1>
                             }
                         </div>
                     </div>

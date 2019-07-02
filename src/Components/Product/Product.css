@@ -5,9 +5,16 @@
     width: 300px;
 }
 
+.image-features-desktop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
 .product-image {
     height: 400px;
-    width: 100%;
+    width: 300px;
     margin: 25px 0;
     display: flex;
     align-items: flex-end
@@ -31,6 +38,31 @@
     align-items: flex-start;
     justify-content: space-evenly;
     padding: 20px 0;
+    margin: 20px 0;
+}
+
+iframe {
+    width: 95vw;
+    height: 225px;
+}
+
+.runner-image {
+    width: 100vw;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.runner-image img {
+    height: 200px;
+    width: 275px;
+}
+
+.headphone-description {
+    width: 90vw;
+    text-align: left;
+    line-height: 20px;
+    padding-left: 30px;
+    margin-bottom: 50px;
 }
 
 .features-container {
@@ -48,6 +80,15 @@
     text-align: left;
 }
 
+.features-columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.quote-container {
+    display: none;
+}
+
 .specs-container {
     height: 300px;
     width: 70vw;
@@ -57,4 +98,86 @@
     margin-bottom: 55px;
     align-items: flex-start;
     margin-left: 40px;
+}
+
+@media screen and (min-width: 1000px) {
+    .product-masthead {
+        display: flex;
+        justify-content: center;
+        width: 90vw;
+        height: 450px;
+        margin-bottom: 100px;
+        border-bottom: 2px gray solid;
+    }
+    
+    .product-masthead-right-side-desktop {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .product-name-container {
+        align-items: center;
+    }
+
+    .product-name-container h1 {
+        font-size: 55px;
+    }
+
+    .guarantees-container {
+        align-items: center;
+    }
+    
+    iframe {
+        width: 729px;
+        height: 410px;
+        margin-bottom: 100px;
+    }
+
+    .specs-container-full {
+        display: flex;
+        width: 75vw;
+        justify-content: space-around;
+        padding-left: 100px;
+    }
+
+    .features-container {
+        flex-direction: column;
+        height: 533px;
+        align-items: center;
+        padding: 0 50px;
+        padding-bottom: 100px;
+    }
+
+    .runner-image {
+        width: 100vw;
+    }
+
+    .runner-image img {
+        height: 400px;
+        width: 600px;
+        margin-bottom: 20px;
+    }
+
+    .headphone-description {
+        width: 600px;
+        padding-left: 0;
+    }
+
+    .quote-container {
+        display: flex;
+        flex-direction: column;
+        height: 125px;
+        justify-content: space-around;
+        line-height: 20px;
+        letter-spacing: 1px;
+    }
+
+    .image-features-desktop {
+        flex-direction: row-reverse;
+        width: 90vw;
+    }
 }

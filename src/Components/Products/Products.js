@@ -26,7 +26,7 @@ class Products extends Component {
                 {this.state.products.map(product => {
                     let { product_id, product_name, price, image_url, battery_life, waterproof_rating, header_text } = product
                     return (
-                        <div className="products-page-container">
+                        <div className="products-page-container" key={product_id}>
                             <Link to={`/products/${product_id}`} key={product_id}>
                                 <div className="products" style={{backgroundImage: `url(${image_url})`}}>
                                     <div className="product-info-container">

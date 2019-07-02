@@ -13,22 +13,23 @@ const REGISTER_USER = 'REGISTER_USER'
 const REGISTER_USER_FULFILLED = 'REGISTER_USER_FULFILLED'
 
 const initialState = {
-    data: null
+    data: null,
+    isAdmin: ''
 }
 
 export default function(state = initialState, action) {
     switch (action.type) {
         case GET_USER_FULFILLED:
-           return { ...state, data: action.payload.data } 
+           return { ...state, data: action.payload.data, isAdmin: action.payload.data.is_admin } 
 
         case LOGIN_USER_FULFILLED:
-            return { ...state, data: action.payload.data }
+            return { ...state, data: action.payload.data, isAdmin: action.payload.data.is_admin }
 
         case LOGOUT_USER_FULFILLED:
                 return { ...state, data: null }
 
         case REGISTER_USER_FULFILLED:
-            return { ...state, data: action.payload.data }
+            return { ...state, data: action.payload.data, isAdmin: action.payload.data.is_admin }
         
             default:
             return state

@@ -9,7 +9,7 @@
 }
 
 .homepage-masthead {
-    background-image: url('./winding-road.jpeg');
+    background-image: url('https://images.unsplash.com/photo-1528920304568-7aa06b3dda8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
     height: 650px;
     width: 100vw;
     display: flex;

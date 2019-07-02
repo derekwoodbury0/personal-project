@@ -28,6 +28,20 @@
     justify-content: space-between;
     width: 115px;
     margin-right: 25px;
+    position: relative;
+}
+
+.cart-quantity {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    line-height: 30px;
+    font-weight: 900;
+    position: absolute;
+    left: 20px;
+    top: 35px;
 }
 
 .menu-icon {
@@ -70,5 +84,9 @@
         width: 40vw;
         justify-content: space-between;
         margin-right: 25vw;
+    }
+
+    .cart-quantity {
+        top: 15px;
     }
 }

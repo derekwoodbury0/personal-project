@@ -1,0 +1,1 @@
+select user_id, name, email, is_admin from users;

@@ -3,21 +3,29 @@ import './Header.css'
 import logo from './jaybird-small.png'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { getUser } from '../../redux/reducers/userReducer'
-import { logout } from '../../redux/reducers/userReducer'
-import { clearCart } from '../../redux/reducers/cartReducer'
+import { getUser, logout } from '../../redux/reducers/userReducer'
+import { clearCart, getCart } from '../../redux/reducers/cartReducer'
 
 class Header extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            showMenu: false
+            showMenu: false,
+            cartQuantity: 0
         }
     }
 
-    componentDidMount() {
-       this.props.getUser()
+    async componentDidMount() {
+       await this.props.getUser()
+       await this.props.getCart()
+       this.getCartQuantity()
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.cart !== this.props.cart) {
+            this.getCartQuantity()
+        }
     }
 
     toggleMenu = () => {
@@ -28,7 +36,17 @@ class Header extends Component {
         await this.props.logout()
         this.props.clearCart()
         this.props.history.push("/")
-        this.setState ({ showMenu: false })
+        this.setState ({ showMenu: false, cartQuantity: 0 })
+        this.componentDidMount()
+    }
+
+    getCartQuantity() {
+        let sum = 0
+        
+        this.props.cart.forEach(function(product){
+            sum += +product.quantity
+        })
+        this.setState ({ cartQuantity: sum })
     }
 
     render() {
@@ -51,11 +69,23 @@ class Header extends Component {
                                 <h2 style={{color: 'white'}}>Login</h2>
                             </Link>
                         }
+                        {this.props.isAdmin ?
+                        <Link to="/admin">
+                            <h2 style={{color: 'white'}}>Admin</h2>
+                        </Link>
+                        :
+                        null
+                        }
                     </div>
 
                     <div className="cart-menu-container">
                         <Link to="/cart">
                             <i className="fas fa-shopping-cart" style={{fontSize: '35px', color: 'white'}}></i>
+                            {this.state.cartQuantity ?
+                                <div className="cart-quantity">{this.state.cartQuantity}</div>
+                                :
+                                null
+                            }
                         </Link>
                         <h1 
                             className="menu-icon"
@@ -71,6 +101,13 @@ class Header extends Component {
                                 <div className="dropdown-menu-links" onClick={this.toggleMenu}>Products</div>
                             </Link>
                             <div>Support</div>
+                            {this.props.isAdmin ?
+                                <Link to="/admin">
+                                    <div style={{color: 'white'}} onClick={this.toggleMenu}>Admin</div>
+                                </Link>
+                                :
+                                null
+                            }
                             {this.props.user ?
                                 <div onClick={() => this.logout()}>Logout</div>
                                 :
@@ -91,8 +128,10 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.userReducer.data
+        user: state.userReducer.data,
+        isAdmin: state.userReducer.isAdmin,
+        cart: state.cartReducer.data
     }
 }
 
-export default connect(mapStateToProps, { getUser, logout, clearCart })(withRouter(Header))
+export default connect(mapStateToProps, { getUser, logout, clearCart, getCart })(withRouter(Header))

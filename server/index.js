@@ -8,6 +8,8 @@ let productsCtrl = require('./controllers/productsCtrl')
 let cartCtrl = require('./controllers/cartCtrl')
 let emailCtrl = require('./controllers/emailCtrl')
 let payCtrl = require('./controllers/payCtrl')
+let orderCtrl = require('./controllers/orderCtrl')
+let adminCtrl = require('./controllers/adminCtrl')
 
 let { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
@@ -42,3 +44,8 @@ app.delete('/api/cart/remove/:id', cartCtrl.removeFromCart)
 app.post('/email/send', emailCtrl.sendEmail)
 
 app.post('/api/payment', payCtrl.pay)
+
+app.post('/api/orders/create', orderCtrl.completeOrder)
+
+app.get('/api/admin/orders', adminCtrl.getOrders)
+app.get('/api/admin/users', adminCtrl.getUsers)

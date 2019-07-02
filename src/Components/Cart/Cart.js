@@ -58,6 +58,7 @@ class Cart extends Component {
         let totalCents = total * 100
         token.card = void 0
         axios.post('/api/payment', {token, amount: totalCents })
+        axios.post('/api/orders/create')
         this.props.history.push('/confirmation')
     }
     
@@ -122,19 +123,24 @@ class Cart extends Component {
                         <h4>${this.state.total}</h4>
                     </div>
                 </div>
-                <div className="checkout-container">
-                    <StripeCheckout 
-                        label="Checkout Now" 
-                        name="Jaybird Checkout"
-                        amount={this.state.total * 100 }
-                        token={this.onToken}
-                        stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
-                        currency='USD'
-                        allowRememberMe = {false}
-                        locale="en"
-                        zipCode={true}
-                    />
-                </div>
+                {this.props.user ?
+                    <div className="checkout-container">
+                        <StripeCheckout 
+                            label="Checkout Now" 
+                            name="Jaybird Checkout"
+                            amount={this.state.total * 100 }
+                            token={this.onToken}
+                            stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
+                            currency='USD'
+                            allowRememberMe = {false}
+                            locale="en"
+                            zipCode={true}
+                            >
+                        </StripeCheckout>
+                    </div>
+                    :
+                    null
+                }
             </div>
             )
     }
