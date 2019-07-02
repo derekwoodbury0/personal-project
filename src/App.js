@@ -9,8 +9,8 @@ import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
 
 class App extends Component {
-  componentDidMount() {
-    this.props.getUser()
+  async componentDidMount() {
+    await this.props.getUser()
     this.props.getCart()
   }
 

@@ -38,8 +38,15 @@
     border: 1px gray solid;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-left: 25px;
     text-align: left;
     height: 200px;
+    margin-bottom: 15px;
+}
+
+@media screen and (min-width: 1000px) {
+    .admin-page {
+        min-height: calc(100vh - 200px - 40px)
+    }
 }

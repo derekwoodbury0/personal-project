@@ -62,19 +62,26 @@ class Header extends Component {
                             <h2 style={{color: 'white'}}>Products</h2>
                         </Link>
                         <h2 style={{color: 'white'}}>Support</h2>
-                        {this.props.user ?
-                            <h2 onClick={() => this.logout()} style={{color: 'white'}}>Logout</h2>
-                            :
-                            <Link to="/login">
-                                <h2 style={{color: 'white'}}>Login</h2>
-                            </Link>
-                        }
                         {this.props.isAdmin ?
                         <Link to="/admin">
                             <h2 style={{color: 'white'}}>Admin</h2>
                         </Link>
                         :
                         null
+                        }
+                        {this.props.user ?
+                            <Link to="/user">
+                                <h2 style={{color: 'white'}}>Account</h2>
+                            </Link>
+                            :
+                            null
+                        }
+                        {this.props.user ?
+                                <h2 onClick={() => this.logout()} style={{color: 'white'}}>Logout</h2>
+                            :
+                            <Link to="/login">
+                                <h2 style={{color: 'white'}}>Login</h2>
+                            </Link>
                         }
                     </div>
 
@@ -105,6 +112,11 @@ class Header extends Component {
                                 <Link to="/admin">
                                     <div style={{color: 'white'}} onClick={this.toggleMenu}>Admin</div>
                                 </Link>
+                                :
+                                null
+                            }
+                            { this.props.user ?
+                                <div style={{color: 'white'}}>Account</div>
                                 :
                                 null
                             }

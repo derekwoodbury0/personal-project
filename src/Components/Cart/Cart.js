@@ -16,8 +16,9 @@ class Cart extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getCart()
+    async componentDidMount() {
+            this.getCart()
+            this.getTotal()
     }
 
     getCart = async () => {
@@ -67,19 +68,25 @@ class Cart extends Component {
         return (
             <div className="full-cart">
                 <div style={{height: '75px'}}></div>
-                <div className="cart-header">
                     {this.props.user && this.props.cartLoading ?
-                    <div className="loader-container"><Loader /></div>
+                    <div className="cart-header">
+                        <div className="loader-container"><Loader /></div>
+                    </div>
                     :
                     this.props.cart[0] && this.props.user ?
-                    <h1>Your Shopping Cart</h1>
+                    <div className="cart-header">
+                        <h1>Your Shopping Cart</h1>
+                    </div>
                     :
                     this.props.user ?
-                    <h1>Your Cart Is Currently Empty</h1>
+                    <div className="cart-header empty-cart">
+                        <h1>Your Cart Is Currently Empty</h1>
+                    </div>
                     :
-                    <h1>Please Log In To View Cart</h1>
+                    <div className="cart-header empty-cart">
+                        <h1>Please Log In To View Cart</h1>
+                    </div>
                 }
-                </div>
                     {this.props.cartLoading ? null 
                     :
                     <div>
@@ -124,7 +131,7 @@ class Cart extends Component {
                         <h4>${this.state.total}</h4>
                     </div>
                 </div>
-                {this.props.user ?
+                {this.props.user && this.props.cart[0] ?
                     <div className="checkout-container">
                         <StripeCheckout 
                             label="Checkout Now" 

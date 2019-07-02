@@ -55,7 +55,7 @@ class Admin extends Component {
                             <div className="admin-users-container">
                                 {this.props.users.map(user => {
                                     return (
-                                        <div className="admin-user-container">
+                                        <div className="admin-user-container" key={user.user_id}>
                                             <h3><span style={{textDecoration: 'underline'}}>Name</span>: {user.name}</h3>
                                             <h3><span style={{textDecoration: 'underline'}}>Email</span>: {user.email}</h3>
                                             <h3><span style={{textDecoration: 'underline'}}>Admin Access</span>: {user.is_admin ? 'Yes' : 'No'}</h3>
@@ -82,12 +82,12 @@ class Admin extends Component {
                             <div className="admin-users-container">
                                 {this.props.orders.map(order => {
                                     return (
-                                        <div className="admin-order-container">
-                                            <h3>Order Number: {order.order_id}</h3>
-                                            <h3>Order Name: {order.name}</h3>
-                                            <h3>Order Email: {order.email}</h3>
-                                            <h3>Product Ordered: {order.product_name}</h3>
-                                            <h3>Product Quantity: {order.quantity}</h3>
+                                        <div className="admin-order-container" key={order.order_id}>
+                                            <h3><span style={{textDecoration: 'underline'}}>Order Number</span>: {order.order_id}</h3>
+                                            <h3><span style={{textDecoration: 'underline'}}>Name</span>: {order.name}</h3>
+                                            <h3><span style={{textDecoration: 'underline'}}>Email</span>: {order.email}</h3>
+                                            <h3><span style={{textDecoration: 'underline'}}>Product Ordered</span>: {order.product_name}</h3>
+                                            <h3><span style={{textDecoration: 'underline'}}>Quantity</span>: {order.quantity}</h3>
                                         </div>
                                     )
                                 })}
