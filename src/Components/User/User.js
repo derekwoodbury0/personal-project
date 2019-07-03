@@ -51,14 +51,12 @@ class User extends Component {
         .then(async () => {
             this.setState ({ isUploading: false, url})
             await axios.put('/api/upload', {url})
-            this.props.getUser()
-            console.log(this.state)
+            await this.props.getUser()
         })
         .catch(err => this.setState({ isUploading: false }))
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="user-page">
                 <div>
@@ -69,7 +67,7 @@ class User extends Component {
                 <div>
                     <div>
                         {this.props.user.profile_image ?
-                        <img src={this.props.user.profile_image} alt="" height="300" width="200" />
+                        <img src={this.props.user.profile_image} alt="" height="300" width="300" />
                         :
                         <img src="https://www.achievesuccesstutoring.com/wp-content/uploads/2019/05/no-photo-icon-22.jpg.png" alt="" height="300" width="200"/>
                         }

@@ -67,20 +67,6 @@ class Header extends Component {
                             <h2 style={{color: 'white'}}>Products</h2>
                         </Link>
                         <h2 style={{color: 'white'}}>Support</h2>
-                        {/* {this.props.isAdmin ?
-                        <Link to="/admin">
-                            <h2 style={{color: 'white'}}>Admin</h2>
-                        </Link>
-                        :
-                        null
-                        } */}
-                        {/* {this.props.user ?
-                            <Link to="/user">
-                                <h2 style={{color: 'white'}}>Account</h2>
-                            </Link>
-                            :
-                            null
-                        } */}
                         {this.props.user ?
                                 <h2 onClick={() => this.logout()} style={{color: 'white'}}>Logout</h2>
                             :
@@ -138,7 +124,9 @@ class Header extends Component {
                                 null
                             }
                             { this.props.user ?
-                                <div style={{color: 'white'}}>Account</div>
+                                <Link to="/user">
+                                    <div style={{color: 'white'}} onClick={this.toggleMenu}>Account</div>
+                                </Link>
                                 :
                                 null
                             }
