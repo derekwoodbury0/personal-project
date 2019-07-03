@@ -1,12 +1,12 @@
 let nodemailer = require('nodemailer')
-
+let { NODEMAILER_EMAIL, NODEMAILER_PASSWORD } = process.env
 module.exports = {
     sendEmail: (req, res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'jaybirdnewsletter@gmail.com',
-                pass: 'Utah9129'
+                user: NODEMAILER_EMAIL,
+                pass: NODEMAILER_PASSWORD
             }
         })
         const mailOptions = {
@@ -32,8 +32,8 @@ module.exports = {
         const transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-              user: 'jaybirdnewsletter@gmail.com',
-              pass: 'Utah9129'
+              user: NODEMAILER_EMAIL,
+              pass: NODEMAILER_PASSWORD
           }
       })
         const mailOptions = {

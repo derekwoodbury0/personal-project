@@ -12,6 +12,7 @@ class Header extends Component {
 
         this.state = {
             showMenu: false,
+            showSettingsMenu: false,
             cartQuantity: 0
         }
     }
@@ -30,6 +31,10 @@ class Header extends Component {
 
     toggleMenu = () => {
         this.setState ({ showMenu: !this.state.showMenu })
+    }
+
+    toggleSettingsMenu = () => {
+        this.setState ({ showSettingsMenu: !this.state.showSettingsMenu })
     }
 
     logout = async () => {
@@ -62,20 +67,20 @@ class Header extends Component {
                             <h2 style={{color: 'white'}}>Products</h2>
                         </Link>
                         <h2 style={{color: 'white'}}>Support</h2>
-                        {this.props.isAdmin ?
+                        {/* {this.props.isAdmin ?
                         <Link to="/admin">
                             <h2 style={{color: 'white'}}>Admin</h2>
                         </Link>
                         :
                         null
-                        }
-                        {this.props.user ?
+                        } */}
+                        {/* {this.props.user ?
                             <Link to="/user">
                                 <h2 style={{color: 'white'}}>Account</h2>
                             </Link>
                             :
                             null
-                        }
+                        } */}
                         {this.props.user ?
                                 <h2 onClick={() => this.logout()} style={{color: 'white'}}>Logout</h2>
                             :
@@ -94,11 +99,28 @@ class Header extends Component {
                                 null
                             }
                         </Link>
+                        <div className="settings-link" onClick={this.toggleSettingsMenu}>&#9660;</div>
                         <h1 
                             className="menu-icon"
                             onClick={this.toggleMenu}
                             >&#9776;</h1>
                     </div>
+                    {this.state.showSettingsMenu  && this.props.user ? 
+                        <div className="settings-dropdown">
+                            <Link to="/user">
+                                <div style={{color: 'white'}} onClick={this.toggleSettingsMenu}>Account</div>
+                            </Link>
+                            {this.props.isAdmin ?
+                                <Link to="/admin">
+                                    <div style={{color: 'white'}} onClick={this.toggleSettingsMenu}>Admin</div>
+                                </Link>
+                                :
+                                null
+                            }
+                        </div> 
+                        :
+                        null   
+                    }
                     { this.state.showMenu ?
                         <div className="dropdown-menu">
                             <Link to="/">

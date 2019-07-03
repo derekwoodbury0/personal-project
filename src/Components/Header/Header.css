@@ -68,9 +68,11 @@
     display: none;
 }
 
+.settings-link {
+    display: none
+}
 
-
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 1000px) {
     .full-header {
         background: #27211F;
         position: fixed;
@@ -88,5 +90,24 @@
 
     .cart-quantity {
         top: 15px;
+    }
+
+    .settings-link {
+        display: inline;
+        padding-right: 10px;
+        font-size: 20px;
+    }
+
+    .settings-dropdown {
+        display: inline-block;
+        width: 200px;
+        z-index: 10;
+        position: absolute;
+        top: 64px;
+        right: 20px;
+        padding-left: 10px;
+        background: rgb(32, 27, 26);
+        line-height: 50px;
+        text-align: left;
     }
 }

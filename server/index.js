@@ -10,6 +10,7 @@ let emailCtrl = require('./controllers/emailCtrl')
 let payCtrl = require('./controllers/payCtrl')
 let orderCtrl = require('./controllers/orderCtrl')
 let adminCtrl = require('./controllers/adminCtrl')
+let userCtrl = require('./controllers/userCtrl')
 
 let { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
@@ -51,3 +52,6 @@ app.get('/api/admin/orders', adminCtrl.getOrders)
 app.get('/api/admin/users', adminCtrl.getUsers)
 app.put('/api/admin/changeadmin', adminCtrl.changeAdmin)
 app.delete('/api/admin/deleteuser/:id', adminCtrl.deleteUser)
+
+app.get('/api/sign-s3', userCtrl.uploadToAmazon)
+app.put('/api/upload', userCtrl.uploadPhoto)
