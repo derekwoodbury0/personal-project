@@ -66,7 +66,9 @@ class Header extends Component {
                         <Link to="/products">
                             <h2 style={{color: 'white'}}>Products</h2>
                         </Link>
-                        <h2 style={{color: 'white'}}>Support</h2>
+                        <Link to="/support">
+                            <h2 style={{color: 'white'}}>Support</h2>
+                        </Link>
                         {this.props.user ?
                                 <h2 onClick={() => this.logout()} style={{color: 'white'}}>Logout</h2>
                             :
@@ -115,7 +117,9 @@ class Header extends Component {
                             <Link to="/products">
                                 <div className="dropdown-menu-links" onClick={this.toggleMenu}>Products</div>
                             </Link>
-                            <div>Support</div>
+                            <Link to="/support">
+                                <div className="dropdown-menu-links" onClick={this.toggleMenu}>Support</div>
+                            </Link>
                             {this.props.isAdmin ?
                                 <Link to="/admin">
                                     <div style={{color: 'white'}} onClick={this.toggleMenu}>Admin</div>

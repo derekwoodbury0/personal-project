@@ -13,7 +13,7 @@ const ADD_TO_CART_PENDING = 'ADD_TO_CART_PENDING'
 const GET_CART = 'GET_CART'
 const GET_CART_FULFILLED = 'GET_CART_FULFILLED'
 const GET_CART_PENDING = 'GET_CART_PENDING'
-// const GET_CART_REJECTED = 'GET_CART_REJECTED'
+const GET_CART_REJECTED = 'GET_CART_REJECTED'
 
 const CLEAR_CART = 'CLEAR_CART'
 
@@ -37,6 +37,8 @@ export default function(state = initialState, action) {
             return {...state, loading: true}
         case GET_CART_FULFILLED:
             return { ...state, data: action.payload.data, loading: false }
+        case GET_CART_REJECTED:
+            return {...state, loading: false}
         case CLEAR_CART:
             return {...state, data: []}
         case UPDATE_CART_PENDING:

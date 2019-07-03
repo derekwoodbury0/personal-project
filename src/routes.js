@@ -10,6 +10,7 @@ import Checkout from './Components/Checkout/Checkout'
 import Confirmation from './Components/Confirmation/Confirmation'
 import Admin from './Components/Admin/Admin'
 import User from './Components/User/User'
+import Support from './Components/Support/Support'
 
 export default (
     <Switch>
@@ -22,5 +23,6 @@ export default (
         <Route path="/confirmation" component={Confirmation} />
         <Route path="/Admin" component={Admin}/>
         <Route path="/user" component={User} />
+        <Route path="/support" component={Support}/>
     </Switch>
 )

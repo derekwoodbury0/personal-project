@@ -98,7 +98,7 @@ class User extends Component {
                                         :
                                         <div>
                                         <input {...getInputProps()}/>
-                                        <p>Drop File or Click Here</p>
+                                        <p>Drop File Or Click Here To Add/Change Image</p>
                                         </div>
                                         }
                                     </div>

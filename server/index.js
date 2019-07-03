@@ -11,6 +11,7 @@ let payCtrl = require('./controllers/payCtrl')
 let orderCtrl = require('./controllers/orderCtrl')
 let adminCtrl = require('./controllers/adminCtrl')
 let userCtrl = require('./controllers/userCtrl')
+let textCtrl = require('./controllers/textCtrl')
 
 let { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
@@ -55,3 +56,5 @@ app.delete('/api/admin/deleteuser/:id', adminCtrl.deleteUser)
 
 app.get('/api/sign-s3', userCtrl.uploadToAmazon)
 app.put('/api/upload', userCtrl.uploadPhoto)
+
+app.post('/api/sendtext', textCtrl.sendText)
