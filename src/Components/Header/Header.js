@@ -18,8 +18,8 @@ class Header extends Component {
     }
 
     async componentDidMount() {
-       await this.props.getUser()
-       await this.props.getCart()
+        await this.props.getUser()
+       this.props.user && this.props.getCart()
        this.getCartQuantity()
     }
 
@@ -42,7 +42,7 @@ class Header extends Component {
         this.props.clearCart()
         this.props.history.push("/")
         this.setState ({ showMenu: false, cartQuantity: 0 })
-        this.componentDidMount()
+        // this.componentDidMount()
     }
 
     getCartQuantity() {

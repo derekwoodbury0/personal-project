@@ -17,7 +17,7 @@ class Cart extends Component {
     }
 
     async componentDidMount() {
-            this.getCart()
+            await this.getCart()
             this.getTotal()
     }
 

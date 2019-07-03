@@ -44,6 +44,7 @@ app.put('/api/cart/update/:id', cartCtrl.updateQuantity)
 app.delete('/api/cart/remove/:id', cartCtrl.removeFromCart)
 
 app.post('/email/send', emailCtrl.sendEmail)
+app.post('/api/email/supportemail', emailCtrl.supportEmail)
 
 app.post('/api/payment', payCtrl.pay)
 
@@ -57,4 +58,4 @@ app.delete('/api/admin/deleteuser/:id', adminCtrl.deleteUser)
 app.get('/api/sign-s3', userCtrl.uploadToAmazon)
 app.put('/api/upload', userCtrl.uploadPhoto)
 
-app.post('/api/sendtext', textCtrl.sendText)
+app.post('/api/support', emailCtrl.supportEmail, textCtrl.sendText)

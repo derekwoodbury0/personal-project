@@ -1,5 +1,6 @@
 let nodemailer = require('nodemailer')
 let { NODEMAILER_EMAIL, NODEMAILER_PASSWORD } = process.env
+
 module.exports = {
     sendEmail: (req, res) => {
         const transporter = nodemailer.createTransport({
@@ -40,7 +41,7 @@ module.exports = {
           from: 'derek@email.com',
           to: `${email}`,
           subject: 'Thanks for Purchasing from Jaybird!',
-          text: `here's a link to your receipt ${receipt_url}`
+          html: `<div>here's a link to your receipt ${receipt_url}</div>`
       }
         transporter.sendMail(mailOptions, function(err, res) {
           if (err) {
@@ -49,5 +50,32 @@ module.exports = {
             console.log('here is the res: ', res)
           }
         })
+    },
+    supportEmail: (req, res, next) => {
+      let { name, email, message } = req.body
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: NODEMAILER_EMAIL,
+            pass: NODEMAILER_PASSWORD
+        }
+    })
+      const mailOptions = {
+        from: `${email}`,
+        to: `jaybirdnewsletter@gmail.com`,
+        subject: 'Support Page Email',
+        html: `<div>${message}</div>
+                <div>From: ${name}</div>
+                <div>Email: ${email}</div>`
+    }
+      transporter.sendMail(mailOptions, function(err, res) {
+        if (err) {
+          console.error('there was an error: ', err);
+        } else {
+          res.sendStatus(500)
+        }
+      })
+      next()
     }
 }

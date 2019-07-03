@@ -3,8 +3,6 @@ const { TWILIO_ACCOUNT_SECRET_ID, TWILIO_AUTH_TOKEN, PERSONAL_PHONE_NUMBER, TWIL
 module.exports = {
     sendText: (req, res) => {
         const { name, message } = req.body
-        // const accountSid = TWILIO_ACCOUNT_SECRET_ID,
-        // const authToken = TWILIO_AUTH_TOKEN
         const client = require('twilio')(TWILIO_ACCOUNT_SECRET_ID, TWILIO_AUTH_TOKEN)
 
         client.messages.create({

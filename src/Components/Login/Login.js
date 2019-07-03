@@ -21,20 +21,20 @@ class Login extends Component {
         this.setState ({ [name]: value })
     }
 
-    handleClick = async () => {
+    handleClick = () => {
         let { email, password } = this.state
 
-        await this.props.login({ email, password })
-        this.props.getCart()
+        this.props.login({ email, password })
+        // this.props.getCart()
         this.props.history.push('/')
     }
 
-    keyPressed = async e => {
+    keyPressed = e => {
         if (e.key === "Enter") {
             let {email, password } = this.state
 
-            await this.props.login({email, password})
-            this.props.getCart()
+            this.props.login({email, password})
+            // this.props.getCart()
             this.props.history.push('/')
         }
     }
