@@ -12,6 +12,9 @@ const LOGOUT_USER_FULFILLED = 'LOGOUT_USER_FULFILLED'
 const REGISTER_USER = 'REGISTER_USER'
 const REGISTER_USER_FULFILLED = 'REGISTER_USER_FULFILLED'
 
+const UPDATE_USER = 'UPDATE_USER'
+const UPDATE_USER_FULFILLED = 'UPDATE_USER_FULFILLED'
+
 const initialState = {
     data: null,
     isAdmin: ''
@@ -29,6 +32,9 @@ export default function(state = initialState, action) {
                 return { ...state, data: null }
 
         case REGISTER_USER_FULFILLED:
+            return { ...state, data: action.payload.data, isAdmin: action.payload.data.is_admin }
+
+        case UPDATE_USER_FULFILLED:
             return { ...state, data: action.payload.data, isAdmin: action.payload.data.is_admin }
         
             default:
@@ -61,5 +67,12 @@ export function logout() {
     return {
         type: LOGOUT_USER,
         payload: axios.get('/auth/logout')
+    }
+}
+
+export function updateUser(updateInfo) {
+    return {
+        type: UPDATE_USER,
+        payload: axios.put('/api/updateuser', updateInfo)
     }
 }

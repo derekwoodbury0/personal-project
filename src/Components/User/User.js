@@ -5,7 +5,7 @@ import { v4 as randomString } from 'uuid'
 import Dropzone from 'react-dropzone'
 import { GridLoader } from 'react-spinners'
 import { connect } from 'react-redux'
-import { getUser } from '../../redux/reducers/userReducer'
+import { getUser, updateUser } from '../../redux/reducers/userReducer'
 
 class User extends Component {
     constructor() {
@@ -13,13 +13,38 @@ class User extends Component {
 
         this.state = {
             isUploading: false,
-            image: ''
+            image: '',
+            edit: false,
+            name: '',
+            email: ''
         }
     }
 
     async componentDidMount() {
         await this.props.getUser()
-        this.setState({ image: this.props.user.profile_image })
+        this.setState({ image: this.props.user.profile_image, name: this.props.user.name, email: this.props.user.email })
+    }
+
+    dropRejected = () => {
+        alert('File size exceeded or file type not allowed. Please choose a different file to upload.')
+    }
+
+    toggleEdit = () => {
+        this.setState ({ edit: !this.state.edit })
+    }
+
+    handleChange = e => {
+        let { name, value } = e.target
+
+        this.setState ({ [name]: value })
+    }
+
+    handleClick = () => {
+        let { name, email } = this.state
+
+        this.props.updateUser({name, email})
+        .then(() => this.toggleEdit())
+        .catch(err => alert(err))
     }
 
     getSignedRequest = ([file]) => {
@@ -49,7 +74,7 @@ class User extends Component {
 
         axios.put(signedRequest, file, options)
         .then(async () => {
-            this.setState ({ isUploading: false, url})
+            this.setState ({ isUploading: false })
             await axios.put('/api/upload', {url})
             await this.props.getUser()
         })
@@ -63,53 +88,85 @@ class User extends Component {
                     <div style={{height: '75px'}}></div>
                     <h1>Account Settings</h1>
                 </div>
-                {this.props.user ?
-                <div>
-                    <div>
-                        {this.props.user.profile_image ?
-                        <img src={this.props.user.profile_image} alt="" height="300" width="300" />
-                        :
-                        <img src="https://www.achievesuccesstutoring.com/wp-content/uploads/2019/05/no-photo-icon-22.jpg.png" alt="" height="300" width="200"/>
-                        }
-                    </div>
-                        <Dropzone
-                            onDropAccepted={this.getSignedRequest}
-                            style={{
-                                position: 'relative',
-                                width: 200,
-                                height: 200,
-                                borderWidth: 7,
-                                marginTop: 100,
-                                borderColor: 'rgb(102, 102, 102)',
-                                borderStyle: 'dashed',
-                                borderRadius: 5,
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                fontSize: 28,
-                            }}
-                            accept="image/*"
-                            multiple={false}
-                            >
-                                {({getRootProps, getInputProps}) => (
-                                    <div {...getRootProps()}>
-                                        {this.state.isUploading ?
-                                        <GridLoader/>
-                                        :
-                                        <div>
-                                        <input {...getInputProps()}/>
-                                        <p>Drop File Or Click Here To Add/Change Image</p>
-                                        </div>
-                                        }
+                    {this.props.user ?
+                    <div className="user-page-main">
+                        <div className="user-page-main-image">
+                            <div>
+                                {this.props.user.profile_image ?
+                                <img src={this.props.user.profile_image} alt="" height="200" width="200" />
+                                :
+                                <img src="https://www.achievesuccesstutoring.com/wp-content/uploads/2019/05/no-photo-icon-22.jpg.png" alt="" height="200" width="200"/>
+                                }
+                            </div>
+                                <Dropzone
+                                    onDropAccepted={this.getSignedRequest}
+                                    style={{
+                                        position: 'relative',
+                                        width: 200,
+                                        height: 200,
+                                        borderWidth: 7,
+                                        marginTop: 100,
+                                        borderColor: 'rgb(102, 102, 102)',
+                                        borderStyle: 'dashed',
+                                        borderRadius: 5,
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        fontSize: 28,
+                                    }}
+                                    accept="image/*"
+                                    multiple={false}
+                                    maxSize={5000000}
+                                    onDropRejected={this.dropRejected}
+                                    >
+                                        {({getRootProps, getInputProps}) => (
+                                            <div {...getRootProps()} style={{display: 'flex', justifyContent: 'center'}}>
+                                                {this.state.isUploading ?
+                                                <GridLoader/>
+                                                :
+                                                <div className="user-photo-drop-zone">
+                                                <input {...getInputProps()}/>
+                                                <p>Drop File Or Click Here To Add/Change Image</p>
+                                                </div>
+                                                }
+                                            </div>
+                                        )}
+                                </Dropzone>
+                        </div>
+                        <div className="user-container">
+                            {this.state.edit ?
+                                <div className="user-info-container">
+                                    <h3><span style={{textDecoration: 'underline'}}>Name</span>: <input
+                                        className="user-info-container-input"
+                                        name="name" 
+                                        onChange={this.handleChange} 
+                                        defaultValue={this.props.user.name}/>
+                                    </h3>
+                                    <h3><span style={{textDecoration: 'underline'}}>Email</span>: &nbsp;<input
+                                        className="user-info-container-input"
+                                        name="email" 
+                                        onChange={this.handleChange} 
+                                        defaultValue={this.props.user.email}/>
+                                    </h3>
+                                    <h3><span style={{textDecoration: 'underline'}}>User ID</span>: {this.props.user.user_id}</h3>
+                                    <div>
+                                        <button onClick={this.toggleEdit}>Cancel</button>
+                                        <button onClick={this.handleClick}>Update</button>
                                     </div>
-                                )}
-                        </Dropzone>
-                        <h1>Name: {this.props.user.name}</h1>
-                        <h1>email: {this.props.user.email}</h1>
-                </div>
-                :
-                null
-                }
+                                </div>
+                                :
+                                <div className="user-info-container">
+                                    <h3><span style={{textDecoration: 'underline'}}>Name</span>: {this.props.user.name}</h3>
+                                    <h3><span style={{textDecoration: 'underline'}}>Email</span>: {this.props.user.email}</h3>
+                                    <h3><span style={{textDecoration: 'underline'}}>User ID</span>: {this.props.user.user_id}</h3>
+                                    <button onClick={this.toggleEdit}>Edit</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    :
+                    null
+                    }
             </div>
         )
     }
@@ -121,4 +178,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { getUser })(User)
+export default connect(mapStateToProps, { getUser, updateUser })(User)

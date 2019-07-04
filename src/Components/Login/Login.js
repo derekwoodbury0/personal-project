@@ -21,21 +21,27 @@ class Login extends Component {
         this.setState ({ [name]: value })
     }
 
-    handleClick = () => {
+    handleClick = async() => {
         let { email, password } = this.state
 
-        this.props.login({ email, password })
-        // this.props.getCart()
-        this.props.history.push('/')
+        await this.props.login({ email, password }).then(res => {
+            if (res.value.status === 200 ) {
+                this.props.history.push('/')
+            }
+        })
+        .catch(() => alert('Email Or Password Incorrect. PLease Try Again.'))
     }
 
-    keyPressed = e => {
+    keyPressed = async e => {
         if (e.key === "Enter") {
-            let {email, password } = this.state
+            let { email, password } = this.state
 
-            this.props.login({email, password})
-            // this.props.getCart()
-            this.props.history.push('/')
+            await this.props.login({ email, password }).then(res => {
+                if (res.value.status === 200 ) {
+                    this.props.history.push('/')
+                }
+            })
+            .catch(() => alert('Email Or Password Incorrect. PLease Try Again.'))
         }
     }
     

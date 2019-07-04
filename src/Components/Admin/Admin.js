@@ -81,6 +81,7 @@ class Admin extends Component {
                         {this.state.showOrders ?
                             <div className="admin-users-container">
                                 {this.props.orders.map(order => {
+                                    console.log(order)
                                     return (
                                         <div className="admin-order-container" key={order.order_id}>
                                             <h3><span style={{textDecoration: 'underline'}}>Order Number</span>: {order.order_id}</h3>
@@ -88,6 +89,7 @@ class Admin extends Component {
                                             <h3><span style={{textDecoration: 'underline'}}>Email</span>: {order.email}</h3>
                                             <h3><span style={{textDecoration: 'underline'}}>Product Ordered</span>: {order.product_name}</h3>
                                             <h3><span style={{textDecoration: 'underline'}}>Quantity</span>: {order.quantity}</h3>
+                                            <h3><span style={{textDecoration: 'underline'}}>Order Status</span>: {order.status}</h3>
                                         </div>
                                     )
                                 })}

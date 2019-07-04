@@ -20,11 +20,28 @@ class Register extends Component {
         this.setState ({ [name]: value })
     }
 
-    handleClick = () => {
+    handleClick = async () => {
         let { name, email, password } = this.state
 
-        this.props.register({ name, email, password })
-        this.props.history.push('/')
+        await this.props.register({ name, email, password }).then(res => {
+            if (res.value.status === 200) {
+                this.props.history.push('/')
+            }
+        })
+        .catch(() => alert('A User Already Exists With This Email Address.'))
+    }
+
+    keyPressed = async e => {
+        if (e.key === 'Enter') {
+            let { name, email, password } = this.state
+
+            await this.props.register({ name, email, password }).then(res => {
+                if (res.value.status === 200) {
+                    this.props.history.push('/')
+                }
+            })
+            .catch(() => alert('A User Already Exists With This Email Address.'))
+        }
     }
     
     render() {
@@ -50,6 +67,7 @@ class Register extends Component {
                             name="password"
                             onChange={this.handleChange}
                             type="password"
+                            onKeyPress={e => this.keyPressed(e)}
                             />
                         <button onClick={this.handleClick}>Register</button>
                     </div>

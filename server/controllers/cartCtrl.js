@@ -34,7 +34,6 @@ module.exports = {
             res.send(cart)
     },
     getCart: async (req, res) => {
-        console.log('hit the backend')
         if (req.session.user) {
             let { user_id } = req.session.user
             let db = req.app.get('db')

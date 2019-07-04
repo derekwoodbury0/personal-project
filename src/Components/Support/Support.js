@@ -48,26 +48,29 @@ class Support extends Component {
                 </div>
                 :
                 <div>
-                    <h2>Send Us An Email</h2>
-                    <div className="support-inputs-container">
-                        <input 
-                            className="support-inputs" 
-                            placeholder="Enter Name" 
-                            name="name"
-                            onChange={this.handleChange}
-                        />
-                        <input 
-                            className="support-inputs" 
-                            placeholder="Enter Email" 
-                            name="email"
-                            onChange={this.handleChange}
-                        />
-                        <textarea 
-                            placeholder="Enter Questions Or Comments Here" 
-                            name="message"
-                            onChange={this.handleChange}    
-                        />
-                        <button onClick={this.handleClick}>Submit</button>
+                    <div className="support-main-full-screen">
+                        <div className="support-inputs-container">
+                            <h2>Send Us An Email</h2>
+                            <input 
+                                className="support-inputs" 
+                                placeholder="Enter Name" 
+                                name="name"
+                                onChange={this.handleChange}
+                            />
+                            <input 
+                                className="support-inputs" 
+                                placeholder="Enter Email" 
+                                name="email"
+                                onChange={this.handleChange}
+                            />
+                            <textarea 
+                                placeholder="Enter Questions Or Comments Here" 
+                                name="message"
+                                onChange={this.handleChange}    
+                            />
+                            <button onClick={this.handleClick}>Submit</button>
+                        </div>
+                        <img src="https://pbs.twimg.com/media/DQzdmwfVoAABcUY.jpg" alt="" height="400" width="300"/>
                     </div>
                 </div>
                 }
