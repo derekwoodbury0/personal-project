@@ -21,6 +21,9 @@ const DELETE_USER = 'DELETE_USER'
 const DELETE_USER_FULFILLED = 'DELETE_USER_FULFILLED'
 const DELETE_USER_REJECTED = 'DELETE_USER_REJECTED'
 
+const REFUND_ORDER = 'REFUND_ORDER'
+const REFUND_ORDER_FULFILLED = 'REFUND_ORDER_FULFILLED'
+
 export default function(state = initialState, action) {
     switch(action.type){
         case GET_ORDERS_FULFILLED:
@@ -31,6 +34,8 @@ export default function(state = initialState, action) {
             return {...state, users: action.payload.data}
         case DELETE_USER_FULFILLED:
             return {...state, users: action.payload.data}
+        case REFUND_ORDER_FULFILLED:
+            return {...state, orders: action.payload.data}
         default:
             return state
     }
@@ -64,4 +69,10 @@ export function getOrders() {
     }
 }
 
+export function refundOrder(order_id) {
+    return {
+        type: REFUND_ORDER,
+        payload: axios.put(`/api/refund/${order_id}`)
+    }
+}
 
