@@ -47,7 +47,7 @@ app.post('/email/send', emailCtrl.sendEmail)
 app.post('/api/email/supportemail', emailCtrl.supportEmail)
 
 app.post('/api/payment', payCtrl.pay)
-app.put('/api/refund/:id', payCtrl.refund)
+app.put('/api/refund/', payCtrl.refund)
 
 app.post('/api/orders/create', orderCtrl.completeOrder)
 

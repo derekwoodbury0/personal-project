@@ -69,10 +69,10 @@ export function getOrders() {
     }
 }
 
-export function refundOrder(order_id) {
+export function refundOrder(order) {
     return {
         type: REFUND_ORDER,
-        payload: axios.put(`/api/refund/${order_id}`)
+        payload: axios.put('/api/refund', order)
     }
 }
 

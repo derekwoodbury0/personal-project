@@ -92,7 +92,7 @@ class Admin extends Component {
                                             {order.status === 'Refunded' ?
                                                 null
                                                 :
-                                                <button onClick={() => this.props.refundOrder(order.order_id)}>Refund Order</button>
+                                                <button onClick={() => this.props.refundOrder(order)}>Refund Order</button>
                                             }
                                         </div>
                                     )

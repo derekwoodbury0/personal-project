@@ -12,7 +12,8 @@ class Cart extends Component {
         super(props)
 
         this.state = {
-            total: 0
+            total: 0,
+            stripeId: ''
         }
     }
 
@@ -58,8 +59,10 @@ class Cart extends Component {
         let { total } = this.state
         let totalCents = total * 100
         token.card = void 0
-        axios.post('/api/payment', {token, amount: totalCents })
-        await axios.post('/api/orders/create')
+        await axios.post('/api/payment', {token, amount: totalCents })
+        .then(res => this.setState ({ stripeId: res.data}))
+        let {stripeId} = this.state
+        await axios.post('/api/orders/create', {stripeId})
         this.props.getCart()
         this.props.history.push('/confirmation')
     }
