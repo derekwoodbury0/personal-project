@@ -50,9 +50,13 @@ module.exports = {
       updateUser: async(req, res) => {
         let db = req.app.get('db')
         let { user_id } = req.session.user
-        let { name, email } = req.body
-        let users = await db.update_user({user_id, name, email})
+        let { name, email, username } = req.body
+        let users = await db.update_user({user_id, name, email, username})
         let user = users[0]
-        res.send(user)
+        let newUsers = await db.find_user_by_email(user.email)
+        let newUser = newUsers[0]
+        delete newUser.password
+        req.session.user = newUser
+        res.send(newUser)
       }
 }

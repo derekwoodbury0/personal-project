@@ -60,4 +60,5 @@ app.get('/api/sign-s3', userCtrl.uploadToAmazon)
 app.put('/api/upload', userCtrl.uploadPhoto)
 app.put('/api/updateuser', userCtrl.updateUser)
 
-app.post('/api/support', emailCtrl.supportEmail, textCtrl.sendText)
+app.post('/api/support', emailCtrl.supportEmail, textCtrl.sendTextToSelf)
+app.post('/api/newslettertext', textCtrl.sendTextOut)

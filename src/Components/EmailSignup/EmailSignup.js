@@ -9,7 +9,9 @@ class EmailSignup extends Component {
         this.state = {
             name: '',
             email: '',
-            submit: false
+            number: '',
+            submit: false,
+            checked: false
         }
     }
 
@@ -19,20 +21,25 @@ class EmailSignup extends Component {
     }
 
     handleClick = () => {
-        if (this.state.email !== '' && this.state.name !== '') {
+        let {name, number, email } = this.state
+        if (email && name) {
             axios.post('/email/send', this.state)
-            this.setState ({ name: '', email: '', submit: true})
+            
+            if (this.state.checked) {
+                axios.post('/api/newslettertext', {name, number})
+            }
+            this.setState ({ name: '', email: '', submit: true, number: '', checked: false})
         } else {
             alert('Please enter name and email')
         }
     }
-
+        
     keyPressed = (e) => {
         if (e.key === 'Enter') {
             this.handleClick()
         }
     }
-
+        
     render() {
         return (
             <div className="email-signup-full">
@@ -46,7 +53,7 @@ class EmailSignup extends Component {
                             <input 
                                 className="email-signup-box" 
                                 onChange={this.handleChange} 
-                                placeholder="Enter Name" 
+                                placeholder="Name" 
                                 name="name"
                                 value={this.state.name}
                                 autoComplete="off"
@@ -54,19 +61,41 @@ class EmailSignup extends Component {
                             <input 
                                 className="email-signup-box" 
                                 onChange={this.handleChange} 
-                                placeholder="Enter Email Here" 
+                                placeholder="Email " 
                                 name="email"
                                 value={this.state.email}
+                                autoComplete="off"
+                                onKeyPress={event => this.keyPressed(event)}
+                                />
+                                <input 
+                                className="email-signup-box"
+                                type="number" 
+                                onChange={this.handleChange} 
+                                placeholder="Phone Number(Optional)" 
+                                name="number"
+                                value={this.state.number}
                                 autoComplete="off"
                                 onKeyPress={event => this.keyPressed(event)}
                                 />
                             {this.state.submit ?
                             <h1 className="email-submitted-check">&#10003;</h1>
                             :
-                            <h1 
-                            className="email-submit-button"
-                            onClick={this.handleClick}
-                            >&#9993;</h1>
+                            <div className="submit-button-container">
+                                <h1 
+                                className="email-submit-button"
+                                onClick={this.handleClick}
+                                >&#9993;</h1>
+                                <div className="checkbox-container">
+                                    <input type="checkbox"  
+                                        id="checkbox"
+                                        autoComplete="off"
+                                        onChange={(e) => this.setState({ checked: e.target.checked})}/>
+                                        <label for="checkbox" 
+                                            style={{fontSize: '13px', letterSpacing: '-.5px'}}>
+                                            &nbsp; Allow Texts From Us
+                                        </label>
+                                </div>
+                            </div>
                             }
                         </div>
                     </div>
@@ -74,10 +103,22 @@ class EmailSignup extends Component {
                         <h1>Follow Us</h1>
                         <h3>#poweryourpassion</h3>
                         <div className="social-links">
-                        <i className="fab fa-facebook-f"></i>
-                            <i className="fab fa-twitter"></i>
-                            <i className="fab fa-youtube"></i>
-                            <i className="fab fa-instagram"></i>
+                        <a href="https://www.facebook.com/JaybirdSport/" target="_blank" 
+                            rel="noopener noreferrer">
+                                <i className="fab fa-facebook-f" style={{color: 'white'}}></i>
+                        </a>
+                        <a href="https://www.twitter.com/jaybirdsport/" target="_blank"
+                            rel="noopener noreferrer">
+                                <i className="fab fa-twitter" style={{color: 'white'}}></i>
+                        </a>
+                        <a href="https://www.youtube.com/user/JayBirdSport" target="_blank"
+                            rel="noopener noreferrer">
+                            <i className="fab fa-youtube" style={{color: 'white'}}></i>
+                        </a>
+                        <a href="https://www.instagram.com/jaybirdsport/?hl=en" target="_blank"
+                            rel="noopener noreferrer">
+                                <i className="fab fa-instagram" style={{color: 'white'}}></i>
+                        </a>    
                         </div>
                     </div>
                 </div>

@@ -42,7 +42,6 @@ class Header extends Component {
         this.props.clearCart()
         this.props.history.push("/")
         this.setState ({ showMenu: false, cartQuantity: 0 })
-        // this.componentDidMount()
     }
 
     getCartQuantity() {
@@ -64,13 +63,13 @@ class Header extends Component {
 
                     <div className="nav-links-full-page">
                         <Link to="/products">
-                            <h2 style={{color: 'white'}}>Products</h2>
+                            <h2 className="nav-link">Products</h2>
                         </Link>
                         <Link to="/support">
-                            <h2 style={{color: 'white'}}>Support</h2>
+                            <h2 className="nav-link">Support</h2>
                         </Link>
                         {this.props.user ?
-                                <h2 onClick={() => this.logout()} style={{color: 'white'}}>Logout</h2>
+                                <h2 onClick={() => this.logout()} className="nav-link">Logout</h2>
                             :
                             <Link to="/login">
                                 <h2 style={{color: 'white'}}>Login</h2>
@@ -96,11 +95,11 @@ class Header extends Component {
                     {this.state.showSettingsMenu  && this.props.user ? 
                         <div className="settings-dropdown">
                             <Link to="/user">
-                                <div style={{color: 'white'}} onClick={this.toggleSettingsMenu}>Account</div>
+                                <div className="nav-link" onClick={this.toggleSettingsMenu}>Account</div>
                             </Link>
                             {this.props.isAdmin ?
                                 <Link to="/admin">
-                                    <div style={{color: 'white'}} onClick={this.toggleSettingsMenu}>Admin</div>
+                                    <div className="nav-link" onClick={this.toggleSettingsMenu}>Admin</div>
                                 </Link>
                                 :
                                 null
@@ -112,24 +111,24 @@ class Header extends Component {
                     { this.state.showMenu ?
                         <div className="dropdown-menu">
                             <Link to="/">
-                                <div className="dropdown-menu-links" onClick={this.toggleMenu}>Home</div>
+                                <div className="nav-link" onClick={this.toggleMenu}>Home</div>
                             </Link>
                             <Link to="/products">
-                                <div className="dropdown-menu-links" onClick={this.toggleMenu}>Products</div>
+                                <div className="nav-link" onClick={this.toggleMenu}>Products</div>
                             </Link>
                             <Link to="/support">
-                                <div className="dropdown-menu-links" onClick={this.toggleMenu}>Support</div>
+                                <div className="nav-link" onClick={this.toggleMenu}>Support</div>
                             </Link>
                             {this.props.isAdmin ?
                                 <Link to="/admin">
-                                    <div style={{color: 'white'}} onClick={this.toggleMenu}>Admin</div>
+                                    <div className="nav-link" onClick={this.toggleMenu}>Admin</div>
                                 </Link>
                                 :
                                 null
                             }
                             { this.props.user ?
                                 <Link to="/user">
-                                    <div style={{color: 'white'}} onClick={this.toggleMenu}>Account</div>
+                                    <div className="nav-link" onClick={this.toggleMenu}>Account</div>
                                 </Link>
                                 :
                                 null
@@ -138,7 +137,7 @@ class Header extends Component {
                                 <div onClick={() => this.logout()}>Logout</div>
                                 :
                                 <Link to="/login">
-                                    <div className="dropdown-menu-links" onClick={this.toggleMenu}>Login</div>
+                                    <div className="nav-link" onClick={this.toggleMenu}>Login</div>
                                 </Link>
                             }
                         </div>

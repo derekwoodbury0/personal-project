@@ -13,7 +13,10 @@ class Home extends Component {
         super(props)
 
         this.state = {
-            products: []
+            products: [],
+            chat: false,
+            message: '',
+            messages: []
         }
     }
 
@@ -21,6 +24,25 @@ class Home extends Component {
         axios.get('/api/products').then( response => {
             this.setState ({ products: response.data })
         }).catch(error => console.log(error))
+    }
+
+    toggleChat = () => {
+        this.setState ({ chat: !this.state.chat})
+    }
+
+    handleChange = (e) => {
+        let { name, value } = e.target
+
+        this.setState ({ [name]: value })
+    }
+
+    handleClick = () => {
+        if (this.state.message) {
+            let { message, messages } = this.state
+            let response = 'Thanks. A representative will be with you shortly.'
+            let newMessages = [...messages, message, response]
+            this.setState({ messages: newMessages })
+        }
     }
 
     render() {
@@ -85,6 +107,34 @@ class Home extends Component {
                 </div>
 
                 <EmailSignup />
+                <div>
+                    <div onClick={this.toggleChat} className="live-chat-link">
+                        <i className="far fa-comment-alt" ></i>
+                    </div>
+                    {this.state.chat &&
+                    <div className="live-chat">
+                        <div className="live-chat-conversation-box">
+                            { this.state.messages === [] ?
+                            null
+                            :
+                            this.state.messages.map((message, index) => {
+                                return (
+                                    <h1 key={message} style={{color: 'black'}}>{message}</h1>
+                                )
+                            })
+                            }
+                        </div>
+                        <div className="live-chat-input-box">
+                            <input 
+                                placeholder="type question" 
+                                name="message"
+                                onChange={this.handleChange}    
+                            />
+                            <button onClick={this.handleClick}>Send</button>
+                        </div>
+                    </div>
+                    }
+                </div>
             </div>
         )
     }

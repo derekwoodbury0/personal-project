@@ -11,7 +11,6 @@ import Footer from './Components/Footer/Footer'
 class App extends Component {
   async componentDidMount() {
     await this.props.getUser()
-    // this.props.getCart()
   }
 
   render() {

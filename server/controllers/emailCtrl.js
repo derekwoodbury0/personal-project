@@ -42,10 +42,12 @@ module.exports = {
           to: `${email}`,
           subject: 'Thanks for Purchasing from Jaybird!',
           html: `<div>Attached is a receipt from your Jaybird purchase. Thanks for your business!</div>`,
+          // <img src="cid:unique@nodemailer.com" />`
           attachments: [
             {
               filename: 'receipt.html',
-              path: `${receipt_url}`
+              path: `${receipt_url}`,
+              cid: 'unique@nodemailer.com'
             }
           ]
       }

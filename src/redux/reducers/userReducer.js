@@ -29,7 +29,7 @@ export default function(state = initialState, action) {
             return { ...state, data: action.payload.data, isAdmin: action.payload.data.is_admin }
 
         case LOGOUT_USER_FULFILLED:
-                return { ...state, data: null }
+                return { ...state, data: null, isAdmin: '' }
 
         case REGISTER_USER_FULFILLED:
             return { ...state, data: action.payload.data, isAdmin: action.payload.data.is_admin }

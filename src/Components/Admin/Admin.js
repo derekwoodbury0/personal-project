@@ -53,15 +53,16 @@ class Admin extends Component {
                         </h1>
                         {this.state.showUsers ?
                             <div className="admin-users-container">
-                                {this.props.users.map(user => {
+                                {this.props.users.map((user, index) => {
                                     return (
-                                        <div className="admin-user-container" key={user.user_id}>
+                                        <div className="admin-user-container" key={index}>
                                             <h3><span style={{textDecoration: 'underline'}}>Name</span>: {user.name}</h3>
+                                            <h3><span style={{textDecoration: 'underline'}}>Username</span>: {user.username}</h3>
                                             <h3><span style={{textDecoration: 'underline'}}>Email</span>: {user.email}</h3>
                                             <h3><span style={{textDecoration: 'underline'}}>Admin Access</span>: {user.is_admin ? 'Yes' : 'No'}</h3>
                                             <h3><span style={{textDecoration: 'underline'}}>User ID</span>: {user.user_id}</h3>
                                             <div>
-                                                <button onClick={() => this.changeAdmin(user)} style={{marginRight: '15px'}}>Change Admin Access</button>
+                                                <button onClick={() => this.changeAdmin(user)} style={{marginRight: '5px', width: '150px'}}>Change Admin Access</button>
                                                 <button onClick={() => this.deleteUser(user.user_id)}>Delete User</button>
                                             </div>
                                         </div>
@@ -80,9 +81,9 @@ class Admin extends Component {
                         </h1>
                         {this.state.showOrders ?
                             <div className="admin-users-container">
-                                {this.props.orders.map(order => {
+                                {this.props.orders.map((order, index) => {
                                     return (
-                                        <div className="admin-order-container" key={order.order_id}>
+                                        <div className="admin-order-container" key={index}>
                                             <h3><span style={{textDecoration: 'underline'}}>Order Number</span>: {order.order_id}</h3>
                                             <h3><span style={{textDecoration: 'underline'}}>Name</span>: {order.name}</h3>
                                             <h3><span style={{textDecoration: 'underline'}}>Email</span>: {order.email}</h3>

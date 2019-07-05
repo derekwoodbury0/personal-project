@@ -35,10 +35,10 @@
 .email-input {
     display: flex;
     flex-direction: column;
-    height: 100px;
+    height: 200px;
     width: 100%;
     align-items: center;
-    z-index: 10;
+    justify-content: space-between;
 }
 
 .email-signup-box {
@@ -46,6 +46,14 @@
     width: 250px;
     background: lightgray;
     color: black;
+}
+
+.submit-button-container {
+    width: 250px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 15px;
 }
 
 .email-submit-button {
@@ -61,6 +69,11 @@
     color: lightgreen;
     padding-top: 15px;
     font-size: 40px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
 }
 
 .social-links {
@@ -89,8 +102,12 @@
         flex-direction: column;
     }
 
+    .email-signup-box {
+        margin-bottom: 10px;
+    }
+
     .email-input {
-        align-items: flex-start
+        align-items: flex-start;
     }
 
     .email-signup-container {

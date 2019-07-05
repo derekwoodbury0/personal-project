@@ -113,6 +113,56 @@
     font-size: 20px;
 }
 
+.live-chat-link {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    background: white;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 50%;
+}
+
+.live-chat-link i {
+    color: gray;
+    font-size: 25px;
+    line-height: 50px;
+}
+
+.live-chat {
+    height: 300px;
+    width: 200px;
+    position: fixed;
+    right: 20px;
+    bottom: 75px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3%
+}
+
+.live-chat-conversation-box {
+    height: 270px;
+    border-bottom: 1px black solid;
+    font-size: 12px;
+}
+
+.live-chat-input-box {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.live-chat-input-box button {
+    width: 25%;
+    height: 20px;
+}
+
+.live-chat-input-box input {
+    width: 70%;
+}
+
 @media screen and (min-width: 1000px) {
     .homepage-masthead {
         background-size: cover;

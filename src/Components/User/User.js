@@ -16,7 +16,8 @@ class User extends Component {
             image: '',
             edit: false,
             name: '',
-            email: ''
+            email: '',
+            username: ''
         }
     }
 
@@ -40,9 +41,9 @@ class User extends Component {
     }
 
     handleClick = () => {
-        let { name, email } = this.state
+        let { name, email, username } = this.state
 
-        this.props.updateUser({name, email})
+        this.props.updateUser({name, email, username})
         .then(() => this.toggleEdit())
         .catch(err => alert(err))
     }
@@ -116,7 +117,7 @@ class User extends Component {
                                     }}
                                     accept="image/*"
                                     multiple={false}
-                                    maxSize={5000000}
+                                    maxSize={2000000}
                                     onDropRejected={this.dropRejected}
                                     >
                                         {({getRootProps, getInputProps}) => (
@@ -142,6 +143,12 @@ class User extends Component {
                                         onChange={this.handleChange} 
                                         defaultValue={this.props.user.name}/>
                                     </h3>
+                                    <h3><span style={{textDecoration: 'underline'}}>Username</span>: <input
+                                        className="user-info-container-input short-input"
+                                        name="username" 
+                                        onChange={this.handleChange} 
+                                        defaultValue={this.props.user.username}/>
+                                    </h3>
                                     <h3><span style={{textDecoration: 'underline'}}>Email</span>: &nbsp;<input
                                         className="user-info-container-input"
                                         name="email" 
@@ -157,6 +164,7 @@ class User extends Component {
                                 :
                                 <div className="user-info-container">
                                     <h3><span style={{textDecoration: 'underline'}}>Name</span>: {this.props.user.name}</h3>
+                                    <h3><span style={{textDecoration: 'underline'}}>Username</span>: {this.props.user.username}</h3>
                                     <h3><span style={{textDecoration: 'underline'}}>Email</span>: {this.props.user.email}</h3>
                                     <h3><span style={{textDecoration: 'underline'}}>User ID</span>: {this.props.user.user_id}</h3>
                                     <button onClick={this.toggleEdit}>Edit</button>
