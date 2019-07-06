@@ -22,7 +22,7 @@ class Register extends Component {
     }
 
     handleClick = async () => {
-        let { name, email, password, username, } = this.state
+        let { name, email, password, username } = this.state
 
         await this.props.register({ name, email, password, username }).then(res => {
             if (res.value.status === 200) {

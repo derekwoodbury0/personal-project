@@ -30,6 +30,24 @@ app.use(session({
     }
 }))
 
+
+
+
+let ngrok = require('ngrok')
+let { urlencoded } = require('body-parser')
+
+app.use(urlencoded({ extended: false }));
+
+app.post('/sms', (req, res) => {
+    console.log(req.body);
+});
+
+let io = require('socket.io')()
+
+
+
+
+
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.get('/auth/logout', authCtrl.logout)

@@ -1,3 +1,3 @@
-insert into users (name, email, password, is_admin)
-VALUES (${name}, ${email}, ${hash}, false)
+insert into users (name, email, password, username, is_admin)
+VALUES (${name}, ${email}, ${hash}, ${username}, false)
 RETURNING *;
