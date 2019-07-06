@@ -1,0 +1,37 @@
+.carousel-image-one {
+    height: 650px;
+    width: 100vw;
+    background-size: cover;
+    background-image: url('https://cdn.nimbusthemes.com/2017/09/09233257/rsz_free_nature_backgrounds_-_perse%C3%8Fden_storm_by_skitterphoto1.jpg')
+}
+
+.carousel-image-two {
+    height: 650px;
+    width: 100vw;
+    background-size: cover;
+    background-image: url('https://stratus.priime.com/assets/collective/example5-09ab61f25a860ac503f085aa6e0e4d1ade36740caa6a7052a6745f56835da07a.jpg')
+}
+
+.carousel-image-three {
+    height: 650px;
+    width: 100vw;
+    background-size: cover;
+    background-image: url('https://www.iaspaper.net/wp-content/uploads/2017/10/Essay-on-Nature.jpg')
+}
+
+@media screen and (min-width: 1000px) {
+    .carousel-image-one {
+        height: 600px;
+        background-image: url('http://altitude-blog.com/wp-content/uploads/2019/06/ArcTeryx_Blog_Banner-A.jpg');
+    }
+    
+    .carousel-image-two {
+        height: 600px;
+        background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/140420205805-01-stunning-nature---aurora-borealis---restricted.jpg');
+    }
+    
+    .carousel-image-three {
+        height: 600px;
+        background-image: url('https://beam.land/static/uploads/1745_8bdbd.jpg');
+    }
+}

@@ -6,6 +6,7 @@ import EmailSignup from '../EmailSignup/EmailSignup'
 import { getUser } from '../../redux/reducers/userReducer'
 import { connect } from 'react-redux'
 import { getCart } from '../../redux/reducers/cartReducer'
+import Carousel from '../Carousel/Carousel'
 
 
 class Home extends Component {
@@ -48,6 +49,8 @@ class Home extends Component {
     render() {
         return (
             <div className="homepage">
+                {/* <div style={{height: '75px'}}></div> */}
+                <Carousel />
                 <div className="homepage-masthead">
                     <div className="welcome-message">
                     {this.props.user ? 
@@ -57,7 +60,7 @@ class Home extends Component {
                     }
                     </div>
                     <div className="homepage-masthead-text-container">
-                        <h1 className="homepage-masthead-text">Audio For <br/>Athletes</h1>
+                        <h1 className="homepage-masthead-text">Audio For <br/>Everywhere</h1>
                     </div>
                         <div className="homepage-masthead-link">
                     <Link to="/products">

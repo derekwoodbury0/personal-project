@@ -11,6 +11,7 @@ class Register extends Component {
         this.state = {
             name: '',
             email: '',
+            username: '',
             password: ''
         }
     }
@@ -21,9 +22,9 @@ class Register extends Component {
     }
 
     handleClick = async () => {
-        let { name, email, password } = this.state
+        let { name, email, password, username, } = this.state
 
-        await this.props.register({ name, email, password }).then(res => {
+        await this.props.register({ name, email, password, username }).then(res => {
             if (res.value.status === 200) {
                 this.props.history.push('/')
             }
@@ -45,6 +46,7 @@ class Register extends Component {
     }
     
     render() {
+        console.log(this.state)
         return (
             <div className="register-page">
                 <h1>Register</h1>
@@ -62,6 +64,12 @@ class Register extends Component {
                             onChange={this.handleChange}
                             type="text"
                             />
+                        <input 
+                            placeholder='username'
+                            name='username'
+                            onChange={this.handleChange}
+                            type="text"
+                        />
                         <input 
                             placeholder="password"
                             name="password"

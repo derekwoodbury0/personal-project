@@ -13,6 +13,8 @@
     align-items: center;
     transition: top 2s linear;
     position: absolute;
+    background: rgba(39, 33, 31, 0.877);
+    z-index: 5
 }
 
 .logo {
@@ -61,9 +63,11 @@
     position: absolute;
     top: 64px;
     margin-left: 0;
-    background: #27211F;
+    /* background: #27211F; */
+    background: rgba(39, 33, 31, 0.918);
     line-height: 50px;
     animation: menu-slide .15s linear;
+    font-weight: 900;
 }
 
 .nav-links-full-page {
@@ -85,7 +89,6 @@
 
 @media screen and (min-width: 1000px) {
     .full-header {
-        background: #27211F;
         position: fixed;
         z-index: 10;
     }
@@ -122,7 +125,8 @@
         top: 64px;
         right: 0;
         padding-left: 10px;
-        background: rgb(32, 27, 26);
+        /* background: rgb(32, 27, 26); */
+        background: rgba(39, 33, 31, 0.925);
         line-height: 50px;
         text-align: left;
         animation: settings-slide .1s linear;
