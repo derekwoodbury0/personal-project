@@ -90,7 +90,7 @@ class EmailSignup extends Component {
                                         id="checkbox"
                                         autoComplete="off"
                                         onChange={(e) => this.setState({ checked: e.target.checked})}/>
-                                        <label for="checkbox" 
+                                        <label htmlFor="checkbox" 
                                             style={{fontSize: '13px', letterSpacing: '-.5px'}}>
                                             &nbsp; Allow Texts From Us
                                         </label>

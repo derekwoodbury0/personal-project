@@ -9,7 +9,6 @@
 }
 
 .homepage-masthead {
-    /* background-image: url('https://images.unsplash.com/photo-1528920304568-7aa06b3dda8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'); */
     height: 650px;
     width: 100vw;
     display: flex;
@@ -26,7 +25,6 @@
     height: 100px;
     margin-bottom: 100px;
     margin-top: 50px;
-    /* margin-right: 50px; */
     padding-left: 45px;
     text-align: left;
     font-size: 23px;
@@ -116,58 +114,7 @@
     z-index: 3;
 }
 
-.live-chat-link {
-    height: 50px;
-    width: 50px;
-    position: fixed;
-    background: white;
-    right: 20px;
-    bottom: 20px;
-    border-radius: 50%;
-    z-index: 2
-}
 
-.live-chat-link i {
-    color: gray;
-    font-size: 25px;
-    line-height: 50px;
-    z-index: 2
-}
-
-.live-chat {
-    height: 300px;
-    width: 200px;
-    position: fixed;
-    right: 20px;
-    bottom: 75px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    border-radius: 3%;
-    z-index: 2
-}
-
-.live-chat-conversation-box {
-    height: 270px;
-    border-bottom: 1px black solid;
-    font-size: 12px;
-}
-
-.live-chat-input-box {
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.live-chat-input-box button {
-    width: 25%;
-    height: 20px;
-}
-
-.live-chat-input-box input {
-    width: 70%;
-}
 
 @media screen and (min-width: 1000px) {
     .homepage-masthead {

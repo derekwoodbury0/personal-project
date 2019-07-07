@@ -5,7 +5,7 @@ import './Carousel.css'
 
 const CarouselPage = () => {
   return (
-    <MDBContainer style={{position: 'absolute', height: '100%'}}>
+    <MDBContainer className="carousel">
       <MDBCarousel
         activeItem={1}
         length={3}

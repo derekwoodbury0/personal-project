@@ -39,7 +39,9 @@ app.use(urlencoded({ extended: false }));
 
 app.post('/sms', (req, res) => {
     console.log(req.body.From)
-    if (req.body.From === '+18017838409') {
+    if (req.body.From === '+18017838409' && req.body.Body === 'Clear') {
+        messages = []
+    } else if (req.body.From === '+18017838409') {
         messages.push(req.body.Body)
     }
     res.sendStatus(200)
@@ -47,7 +49,7 @@ app.post('/sms', (req, res) => {
 
 
 let io = require('socket.io')()
-const messages = []
+let messages = []
 
 io.on('connection', (client) => {
     console.log('new guy')
@@ -101,6 +103,6 @@ app.get('/api/sign-s3', userCtrl.uploadToAmazon)
 app.put('/api/upload', userCtrl.uploadPhoto)
 app.put('/api/updateuser', userCtrl.updateUser)
 
-app.post('/api/support', emailCtrl.supportEmail, textCtrl.sendTextToSelf)
+app.post('/api/support', emailCtrl.supportEmail)
 app.post('/api/newslettertext', textCtrl.sendTextOut)
 app.post('/api/chattext', textCtrl.chatText)

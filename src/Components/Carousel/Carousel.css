@@ -1,3 +1,11 @@
+.carousel {
+    position: absolute;
+    height: 100%;
+
+}
+
+
+
 .carousel-image-one {
     height: 650px;
     width: 100vw;

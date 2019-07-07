@@ -1,0 +1,61 @@
+.live-chat-link {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    background: white;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 50%;
+    z-index: 2
+  }
+  
+  .live-chat-link i {
+    color: gray;
+    font-size: 25px;
+    line-height: 50px;
+    z-index: 2
+  }
+  
+  .live-chat {
+    height: 300px;
+    width: 200px;
+    position: fixed;
+    right: 20px;
+    bottom: 75px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3%;
+    z-index: 2
+  }
+  
+  .live-chat-conversation-box {
+    height: 270px;
+    border-bottom: 1px black solid;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+  }
+  
+  .live-chat-conversation-box h2 {
+    /* height: 25px; */
+    /* width: 100px; */
+    background: lightgray
+  }
+  
+  .live-chat-input-box {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .live-chat-input-box button {
+    width: 25%;
+    height: 20px;
+  }
+  
+  .live-chat-input-box input {
+    width: 70%;
+  }
