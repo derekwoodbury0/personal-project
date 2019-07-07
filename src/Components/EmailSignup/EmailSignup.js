@@ -25,7 +25,7 @@ class EmailSignup extends Component {
         if (email && name) {
             axios.post('/email/send', this.state)
             
-            if (this.state.checked) {
+            if (this.state.checked && this.state.number) {
                 axios.post('/api/newslettertext', {name, number})
             }
             this.setState ({ name: '', email: '', submit: true, number: '', checked: false})
@@ -78,7 +78,7 @@ class EmailSignup extends Component {
                                 onKeyPress={event => this.keyPressed(event)}
                                 />
                             {this.state.submit ?
-                            <h1 className="email-submitted-check">&#10003;</h1>
+                            <h1 className="email-submitted-check" style={{width: '250px'}}>&#10003;</h1>
                             :
                             <div className="submit-button-container">
                                 <h1 

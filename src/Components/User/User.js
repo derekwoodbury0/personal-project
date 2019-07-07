@@ -23,7 +23,6 @@ class User extends Component {
 
     async componentDidMount() {
         await this.props.getUser()
-        this.setState({ image: this.props.user.profile_image, name: this.props.user.name, email: this.props.user.email })
     }
 
     dropRejected = () => {
