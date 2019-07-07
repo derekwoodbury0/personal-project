@@ -33,14 +33,16 @@ app.use(session({
 
 
 
-// let ngrok = require('ngrok')
 let { urlencoded } = require('body-parser')
 
 app.use(urlencoded({ extended: false }));
 
 app.post('/sms', (req, res) => {
-    messages.push(req.body.Body)
-    io.emit('emittedMessage', {will: messages})
+    console.log(req.body.From)
+    if (req.body.From === '+18017838409') {
+        messages.push(req.body.Body)
+    }
+    res.sendStatus(200)
 });
 
 
@@ -51,7 +53,7 @@ io.on('connection', (client) => {
     console.log('new guy')
     client.on('subscribeToTimer', (interval) => {
         setInterval(() => {
-            client.emit('timer', messages)
+            client.emit('messages', messages)
         }, interval)
     })
     client.on('sendMessage', (message) => {
@@ -101,3 +103,4 @@ app.put('/api/updateuser', userCtrl.updateUser)
 
 app.post('/api/support', emailCtrl.supportEmail, textCtrl.sendTextToSelf)
 app.post('/api/newslettertext', textCtrl.sendTextOut)
+app.post('/api/chattext', textCtrl.chatText)

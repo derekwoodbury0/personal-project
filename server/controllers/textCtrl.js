@@ -11,7 +11,6 @@ module.exports = {
             to: PERSONAL_PHONE_NUMBER
         })
         .then(message => {
-            //do something here
             res.send(message)
         })
         .catch(err => {
@@ -29,6 +28,24 @@ module.exports = {
             from: TWILIO_PHONE_NUMBER
         })
         .then(message => res.send(message))
+        .catch(err => {
+            console.log(err)
+            res.sendStatus(500)
+        })
+    },
+    chatText: (req, res) => {
+        const { message } = req.body
+        console.log(req.body)
+        const client = require('twilio')(TWILIO_ACCOUNT_SECRET_ID, TWILIO_AUTH_TOKEN)
+
+        client.messages.create({
+            body: message,
+            from: TWILIO_PHONE_NUMBER,
+            to: PERSONAL_PHONE_NUMBER
+        })
+        .then(message => {
+            res.send(message)
+        })
         .catch(err => {
             console.log(err)
             res.sendStatus(500)
