@@ -67,7 +67,7 @@ class Chat extends Component {
             {this.state.chat &&
             <div className="live-chat">
                 <div className="live-chat-conversation-box">
-                  <div>
+                  <div className="live-chat-conversation-box-inner">
                     { this.state.messages === [] ?
                     null
                     :

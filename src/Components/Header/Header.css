@@ -14,7 +14,7 @@
     transition: top 2s linear;
     position: absolute;
     background: rgba(39, 33, 31, 0.877);
-    z-index: 5
+    z-index: 5;
 }
 
 .logo {

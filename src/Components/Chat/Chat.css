@@ -34,14 +34,24 @@
     border-bottom: 1px black solid;
     font-size: 12px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     padding-top: 15px;
+  }
+
+  .live-chat-conversation-box-inner {
+    width: 85%;
+    height: 100%;
+    overflow: auto;
   }
   
   .live-chat-conversation-box h2 {
-    /* height: 25px; */
-    /* width: 100px; */
-    background: lightgray
+    min-height: 30px;
+    width: 100%;
+    background: lightgreen;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    overflow-wrap: break-word;
+    padding: 5px 10px;
   }
   
   .live-chat-input-box {
