@@ -33,17 +33,38 @@ app.use(session({
 
 
 
-let ngrok = require('ngrok')
+// let ngrok = require('ngrok')
 let { urlencoded } = require('body-parser')
 
 app.use(urlencoded({ extended: false }));
 
 app.post('/sms', (req, res) => {
-    console.log(req.body);
+    messages.push(req.body.Body)
+    io.emit('emittedMessage', {will: messages})
 });
 
-let io = require('socket.io')()
 
+let io = require('socket.io')()
+const messages = []
+
+io.on('connection', (client) => {
+    console.log('new guy')
+    client.on('subscribeToTimer', (interval) => {
+        setInterval(() => {
+            client.emit('timer', messages)
+        }, interval)
+    })
+    client.on('sendMessage', (message) => {
+        console.log('message received', message)
+        messages.push(message)
+        io.emit('emittedMessage', messages)
+        console.log(messages)
+    })
+})
+
+const port = 4001
+
+io.listen(port)
 
 
 

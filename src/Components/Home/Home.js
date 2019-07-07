@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import './Home.css'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 import EmailSignup from '../EmailSignup/EmailSignup'
 import { getUser } from '../../redux/reducers/userReducer'
 import { connect } from 'react-redux'
 import { getCart } from '../../redux/reducers/cartReducer'
 import Carousel from '../Carousel/Carousel'
+
+import openSocket from 'socket.io-client'
+const socket = openSocket('http://10.0.0.164:4001')
 
 
 class Home extends Component {
@@ -14,7 +17,7 @@ class Home extends Component {
         super(props)
 
         this.state = {
-            products: [],
+            // products: [],
             chat: false,
             message: '',
             messages: []
@@ -22,9 +25,15 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/products').then( response => {
-            this.setState ({ products: response.data })
-        }).catch(error => console.log(error))
+        // axios.get('/api/products').then( response => {
+        //     this.setState ({ products: response.data })
+        // }).catch(error => console.log(error))
+
+        this.subscribeToTimer(
+            function timestampCallback(err, timestamp) {
+                console.log(timestamp)
+            }
+            )
     }
 
     toggleChat = () => {
@@ -39,17 +48,41 @@ class Home extends Component {
 
     handleClick = () => {
         if (this.state.message) {
-            let { message, messages } = this.state
-            let response = 'Thanks. A representative will be with you shortly.'
-            let newMessages = [...messages, message, response]
-            this.setState({ messages: newMessages })
+            // let { message, messages } = this.state
+            // let response = 'Thanks. A representative will be with you shortly.'
+            // let newMessages = [...messages, message, response]
+            // this.setState({ messages: newMessages })
+            let { message } = this.state
+            this.sendMessage(message)
+            this.receiveMessage()
         }
     }
+
+
+
+    subscribeToTimer(cb){
+        socket.emit('subscribeToTimer', 1000)
+        socket.on('timer', timestamp => cb(null, timestamp))
+    }
+    
+    receiveMessage(){
+        console.log('receiveMessage')
+        socket.on('emittedMessage', receivedMessages => {
+            console.log('emittedMessage handler invoked', receivedMessages)
+            this.setState ({ messages: receivedMessages})
+        })    
+    }
+
+    sendMessage(message){
+        socket.emit('sendMessage', message)
+    }
+
+
+
 
     render() {
         return (
             <div className="homepage">
-                {/* <div style={{height: '75px'}}></div> */}
                 <Carousel />
                 <div className="homepage-masthead">
                     <div className="welcome-message">
@@ -122,7 +155,7 @@ class Home extends Component {
                             :
                             this.state.messages.map((message, index) => {
                                 return (
-                                    <h1 key={message} style={{color: 'black'}}>{message}</h1>
+                                    <h1 key ={index} style={{color: 'black'}}>{message}</h1>
                                 )
                             })
                             }
