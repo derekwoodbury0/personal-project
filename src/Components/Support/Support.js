@@ -34,6 +34,12 @@ class Support extends Component {
         }
     }
 
+    keyPressed = (e) => {
+        if (e.key === 'Enter') {
+            this.handleClick()
+        }
+    }
+
     render() {
         return (
             <div className="support-page">
@@ -55,18 +61,21 @@ class Support extends Component {
                                 className="support-inputs" 
                                 placeholder="Enter Name" 
                                 name="name"
+                                autoComplete="off"
                                 onChange={this.handleChange}
                             />
                             <input 
                                 className="support-inputs" 
                                 placeholder="Enter Email" 
                                 name="email"
+                                autoComplete="off"
                                 onChange={this.handleChange}
                             />
                             <textarea 
                                 placeholder="Enter Questions Or Comments Here" 
                                 name="message"
-                                onChange={this.handleChange}    
+                                onChange={this.handleChange}
+                                onKeyPress={this.keyPressed}    
                             />
                             <button onClick={this.handleClick}>Submit</button>
                         </div>

@@ -40,6 +40,12 @@ class Chat extends Component {
     }
   }
 
+  keyPressed = e => {
+    if (e.key === 'Enter') {
+      this.handleClick()
+    }
+  }
+
   subscribeToTimer(cb) {
     socket.emit('subscribeToTimer', 1000)
     socket.on('messages', cb = (messages) => {
@@ -87,6 +93,8 @@ class Chat extends Component {
                 name="message"
                 onChange={this.handleChange}
                 value={this.state.message}
+                onKeyPress={this.keyPressed}
+                autoComplete="off"
               />
               :
               <input
