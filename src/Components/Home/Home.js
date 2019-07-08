@@ -8,11 +8,21 @@ import { getCart } from '../../redux/reducers/cartReducer'
 import Carousel from '../Carousel/Carousel'
 
 class Home extends Component {
+
+    componentDidMount() {
+        window.scrollBy(0,-10000000)
+    }
+
+    async pageScroll() {
+        window.scrollBy(0,-10000)
+    }
+
     render() {
+        console.log(this.props)
         return (
             <div className="homepage">
                 <Carousel />
-                <div className="homepage-masthead">
+                <div className="homepage-masthead" id="page">
                     <div className="welcome-message">
                     {this.props.user ? 
                         <h4>Welcome Back, {this.props.user.name}!</h4>

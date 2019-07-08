@@ -21,6 +21,7 @@ class Product extends Component {
         axios.get(`/api/products/${this.props.match.params.id}`).then(response => {
             this.setState ({ product: response.data, loading: false })
         })
+        window.scrollBy(0,-10000000)
     }
 
     addToCart = (id) => {

@@ -19,6 +19,7 @@ class Products extends Component {
         axios.get('/api/products').then( response => {
             this.setState ({ products: response.data, loading: false })
         }).catch(error => console.log(error))
+        window.scrollBy(0,-10000000)
     }
 
     render() {
