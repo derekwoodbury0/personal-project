@@ -15,6 +15,8 @@ let textCtrl = require('./controllers/textCtrl')
 
 let { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
+app.use( express.static( `${__dirname}/../build` ) )
+
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
     app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}`))
