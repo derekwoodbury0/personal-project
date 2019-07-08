@@ -17,9 +17,13 @@ class Header extends Component {
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
+        this.getCart()
+    }
+    
+    getCart = async() => {
         await this.props.getUser()
-       this.props.user && this.props.getCart()
+       this.props.user && await this.props.getCart()
        this.getCartQuantity()
     }
 

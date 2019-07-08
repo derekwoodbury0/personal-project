@@ -4,7 +4,7 @@ import axios from 'axios'
 import openSocket from 'socket.io-client'
 import { connect } from 'react-redux'
 
-const socket = openSocket('http://10.0.0.164:4001')
+const socket = openSocket(process.env.REACT_APP_SOCKETS_IP)
 
 class Chat extends Component {
   constructor(props) {
@@ -19,6 +19,10 @@ class Chat extends Component {
 
   componentDidMount() {
     this.subscribeToTimer()
+    socket.on('emittedMessage', receivedMessages => {
+      console.log('emittedMessage handler invoked', receivedMessages)
+      this.setState({ messages: receivedMessages })
+    })
   }
 
   toggleChat = () => {
@@ -55,10 +59,10 @@ class Chat extends Component {
 
   receiveMessage() {
     console.log('receiveMessage')
-    socket.on('emittedMessage', receivedMessages => {
-      console.log('emittedMessage handler invoked', receivedMessages)
-      this.setState({ messages: receivedMessages })
-    })
+    // socket.on('emittedMessage', receivedMessages => {
+    //   console.log('emittedMessage handler invoked', receivedMessages)
+    //   this.setState({ messages: receivedMessages })
+    // })
   }
 
   sendMessage(message) {

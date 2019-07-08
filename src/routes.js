@@ -24,5 +24,6 @@ export default (
         <Route path="/Admin" component={Admin}/>
         <Route path="/user" component={User} />
         <Route path="/support" component={Support}/>
+        <Route component={Home} />
     </Switch>
 )
