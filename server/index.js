@@ -12,6 +12,8 @@ let orderCtrl = require('./controllers/orderCtrl')
 let adminCtrl = require('./controllers/adminCtrl')
 let userCtrl = require('./controllers/userCtrl')
 let textCtrl = require('./controllers/textCtrl')
+let socket = require('socket.io')
+let messages = []
 
 let { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
@@ -19,7 +21,22 @@ app.use( express.static( `${__dirname}/../build` ) )
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
-    app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}`))
+    const io = socket(app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}`)))
+
+    io.on('connection', (client) => {
+        console.log('new guy')
+        client.on('subscribeToTimer', (interval) => {
+            setInterval(() => {
+                client.emit('messages', messages)
+            }, interval)
+        })
+        client.on('sendMessage', (message) => {
+            console.log('message received', message)
+            messages.push(message)
+            io.emit('emittedMessage', messages)
+            console.log(messages)
+        })
+    })
 })
 
 app.use(express.json())
@@ -50,27 +67,14 @@ app.post('/sms', (req, res) => {
 });
 
 
-let io = require('socket.io')()
-let messages = []
 
-io.on('connection', (client) => {
-    console.log('new guy')
-    client.on('subscribeToTimer', (interval) => {
-        setInterval(() => {
-            client.emit('messages', messages)
-        }, interval)
-    })
-    client.on('sendMessage', (message) => {
-        console.log('message received', message)
-        messages.push(message)
-        io.emit('emittedMessage', messages)
-        console.log(messages)
-    })
-})
 
-const port = 4001
 
-io.listen(port)
+
+
+// const port = 4001
+
+// io.listen(port)
 
 
 

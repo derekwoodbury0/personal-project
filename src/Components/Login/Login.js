@@ -29,7 +29,7 @@ class Login extends Component {
                 this.props.history.push('/')
             }
         })
-        .catch(() => alert('Email Or Password Incorrect. PLease Try Again.'))
+        .catch(() => alert('Email Or Password Incorrect. Please Try Again.'))
     }
 
     keyPressed = async e => {

@@ -4,7 +4,7 @@ import axios from 'axios'
 import openSocket from 'socket.io-client'
 import { connect } from 'react-redux'
 
-const socket = openSocket(process.env.REACT_APP_SOCKETS_IP)
+const socket = openSocket()
 
 class Chat extends Component {
   constructor(props) {
