@@ -19,6 +19,7 @@ class Cart extends Component {
 
     componentDidMount() {
         this.getCart()
+        window.scrollBy(0,-10000000)
     }
 
     getCart = async () => {
@@ -51,7 +52,8 @@ class Cart extends Component {
         this.props.cart.forEach(function(product) {
             sum += +product.price * +product.quantity
         })
-        this.setState ({ total: sum })
+        
+        this.setState ({ total: sum.toFixed(2) })
     }
 
     onToken = async (token) => {

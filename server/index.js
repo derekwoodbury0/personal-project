@@ -66,19 +66,6 @@ app.post('/sms', (req, res) => {
     res.sendStatus(200)
 });
 
-
-
-
-
-
-
-// const port = 4001
-
-// io.listen(port)
-
-
-
-
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.get('/auth/logout', authCtrl.logout)

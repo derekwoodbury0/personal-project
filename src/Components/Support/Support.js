@@ -14,6 +14,10 @@ class Support extends Component {
         }
     }
 
+    componentDidMount() {
+        window.scrollBy(0,-10000000)
+    }
+
     submitted = () => {
         this.setState ({ submitted: true })
     }

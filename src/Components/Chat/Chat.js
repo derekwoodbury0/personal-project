@@ -20,7 +20,6 @@ class Chat extends Component {
   componentDidMount() {
     this.subscribeToTimer()
     socket.on('emittedMessage', receivedMessages => {
-      console.log('emittedMessage handler invoked', receivedMessages)
       this.setState({ messages: receivedMessages })
     })
   }
@@ -55,14 +54,6 @@ class Chat extends Component {
     socket.on('messages', cb = (messages) => {
       this.setState({ messages })
     })
-  }
-
-  receiveMessage() {
-    console.log('receiveMessage')
-    // socket.on('emittedMessage', receivedMessages => {
-    //   console.log('emittedMessage handler invoked', receivedMessages)
-    //   this.setState({ messages: receivedMessages })
-    // })
   }
 
   sendMessage(message) {

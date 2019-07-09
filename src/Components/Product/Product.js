@@ -35,7 +35,7 @@ class Product extends Component {
 
     render() {
         return (
-            <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
+            <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', minHeight: '100vh'}}>
                 <div style={{height: '75px'}}></div>
                     {this.state.loading ?
                         <Loader />
