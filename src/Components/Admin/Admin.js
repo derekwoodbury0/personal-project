@@ -62,7 +62,11 @@ class Admin extends Component {
                                             <h3><span style={{textDecoration: 'underline'}}>Admin Access</span>: {user.is_admin ? 'Yes' : 'No'}</h3>
                                             <h3><span style={{textDecoration: 'underline'}}>User ID</span>: {user.user_id}</h3>
                                             <div>
-                                                <button onClick={() => this.changeAdmin(user)} style={{marginRight: '5px', width: '150px'}}>Change Admin Access</button>
+                                                <button 
+                                                    onClick={() => this.changeAdmin(user)} 
+                                                    style={{marginRight: '5px', width: '150px'}}
+                                                    >Change Admin Access
+                                                </button>
                                                 <button onClick={() => this.deleteUser(user.user_id)}>Delete User</button>
                                             </div>
                                         </div>

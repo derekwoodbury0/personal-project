@@ -107,7 +107,10 @@ class Cart extends Component {
                                         </div>
                                         <div className="cart-product-quantity-container">
                                                 <div>
-                                                    <h3>QTY: <select style={{background: 'white'}} defaultValue={quantity} onChange={(event) => this.changeQuantity(product_id, event)}>
+                                                    <h3>QTY: <select style={{background: 'white'}}
+                                                        defaultValue={quantity} 
+                                                        onChange={(event) => this.changeQuantity(product_id, event)}
+                                                    >
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -120,7 +123,9 @@ class Cart extends Component {
                                                         <option>10</option>
                                                     </select></h3>
                                                 </div>
-                                            <h5 style={{fontSize: '25px'}} onClick={() => this.removeFromCart(product_id)}>&#128465;</h5>
+                                            <h5 style={{fontSize: '25px'}} 
+                                                onClick={() => this.removeFromCart(product_id)}>&#128465;
+                                            </h5>
                                         </div>
                                     </div>
                                 </div>

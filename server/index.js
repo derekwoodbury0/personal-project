@@ -13,6 +13,7 @@ let adminCtrl = require('./controllers/adminCtrl')
 let userCtrl = require('./controllers/userCtrl')
 let textCtrl = require('./controllers/textCtrl')
 let socket = require('socket.io')
+let { urlencoded } = require('body-parser')
 let messages = []
 
 let { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
@@ -48,11 +49,6 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 365
     }
 }))
-
-
-
-
-let { urlencoded } = require('body-parser')
 
 app.use(urlencoded({ extended: false }));
 

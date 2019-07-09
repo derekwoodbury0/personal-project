@@ -24,8 +24,21 @@ class Chat extends Component {
     })
   }
 
-  toggleChat = () => {
-    this.setState({ chat: !this.state.chat })
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.messages.length !== this.state.messages.length) {
+      this.pageScroll()
+    }
+  }
+  
+  toggleChat = async() => {
+    await this.setState({ chat: !this.state.chat })
+    this.pageScroll()
+  }
+
+  pageScroll() {
+    if (this.state.chat) {
+    document.getElementById('chat-box-id').scrollBy(0,10000000000000000)
+    }
   }
 
   handleChange = (e) => {
@@ -69,7 +82,7 @@ class Chat extends Component {
         {this.state.chat &&
           <div className="live-chat">
             <div className="live-chat-conversation-box">
-              <div className="live-chat-conversation-box-inner">
+              <div className="live-chat-conversation-box-inner" id='chat-box-id'>
                 {this.state.messages !== [] && this.props.user ?
                   this.state.messages.map((message, index) => {
                     return (

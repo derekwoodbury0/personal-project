@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './Login.css'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-
 import { login } from '../../redux/reducers/userReducer'
 import { getCart } from '../../redux/reducers/cartReducer'
 

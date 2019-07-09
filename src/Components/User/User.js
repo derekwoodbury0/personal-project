@@ -93,9 +93,11 @@ class User extends Component {
                         <div className="user-page-main-image">
                             <div>
                                 {this.props.user.profile_image ?
-                                <img src={this.props.user.profile_image} alt="" height="200" width="200" />
+                                <img src={this.props.user.profile_image} alt="" height="250" width="200" />
                                 :
-                                <img src="https://www.achievesuccesstutoring.com/wp-content/uploads/2019/05/no-photo-icon-22.jpg.png" alt="" height="200" width="200"/>
+                                <img src="https://www.achievesuccesstutoring.com/wp-content/uploads/2019/05/no-photo-icon-22.jpg.png" 
+                                    alt="" height="250" width="200"
+                                />
                                 }
                             </div>
                                 <Dropzone

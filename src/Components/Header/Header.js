@@ -17,15 +17,15 @@ class Header extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getCart()
-    }
+    // componentDidMount() {
+    //     this.getCart()
+    // }
     
-    getCart = async() => {
-        await this.props.getUser()
-       this.props.user && await this.props.getCart()
-       this.getCartQuantity()
-    }
+    // getCart = async() => {
+    //     await this.props.getUser()
+    //    this.props.user && await this.props.getCart()
+    //    this.getCartQuantity()
+    // }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.cart !== this.props.cart) {

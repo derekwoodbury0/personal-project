@@ -8,7 +8,6 @@ import { getCart } from '../../redux/reducers/cartReducer'
 import Carousel from '../Carousel/Carousel'
 
 class Home extends Component {
-
     componentDidMount() {
         window.scrollBy(0,-10000000)
     }
