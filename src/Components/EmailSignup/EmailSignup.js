@@ -22,15 +22,17 @@ class EmailSignup extends Component {
 
     handleClick = () => {
         let {name, number, email } = this.state
-        if (email && name) {
+        if (email && name && this.state.checked & this.state.number.length === 10) {
             axios.post('/email/send', this.state)
-            
-            if (this.state.checked && this.state.number) {
-                axios.post('/api/newslettertext', {name, number})
-            }
+            axios.post('/api/newslettertext', {name, number})
+            this.setState ({ name: '', email: '', submit: true, number: '', checked: false})
+        } else if (email && name && this.state.checked) {
+            alert('Please Enter Valid 10-Digit Phone Number To Receive Texts')
+        } else if (name && email) {
+            axios.post('/email/send', this.state)
             this.setState ({ name: '', email: '', submit: true, number: '', checked: false})
         } else {
-            alert('Please enter name and email')
+            alert('Please Enter Name And Email')
         }
     }
         
