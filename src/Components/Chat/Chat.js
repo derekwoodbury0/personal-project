@@ -83,19 +83,19 @@ class Chat extends Component {
           <div className="live-chat">
             <div className="live-chat-conversation-box">
               <div className="live-chat-conversation-box-inner" id='chat-box-id'>
-                {this.state.messages !== [] && this.props.user ?
-                  this.state.messages.map((message, index) => {
+                {/* {this.state.messages !== [] && this.props.user ? */}
+                  {this.state.messages.map((message, index) => {
                     return (
                       <h2 key={index} style={{ color: 'black' }}>{message}</h2>
                     )
-                  })
-                  :
-                  <h2 style={{ color: 'black' }}>Please Log In To Chat</h2>
-                }
+                  })}
+                   {/* :
+                   <h2 style={{ color: 'black' }}>Please Log In To Chat</h2>
+                } */}
               </div>
             </div>
             <div className="live-chat-input-box">
-              {this.props.user ?
+              {/* {this.props.user ? */}
               <input
                 placeholder="type question"
                 name="message"
@@ -104,13 +104,13 @@ class Chat extends Component {
                 onKeyPress={this.keyPressed}
                 autoComplete="off"
               />
-              :
+              {/* :
               <input
-                placeholder="Please Log In To Chat"
-                style={{background: 'lightgray', color: 'black'}}
-                disabled
-              />
-              }
+                 placeholder="Please Log In To Chat"
+                 style={{background: 'lightgray', color: 'black'}}
+                 disabled
+               />
+              } */}
               <button onClick={this.handleClick}>Send</button>
             </div>
           </div>
