@@ -136,7 +136,7 @@ class Cart extends Component {
                 <div className="subtotal-full-container">
                     <h5 style={{color: 'gray', paddingTop: '50px', textDecoration: 'underline'}}>Add Promo Code</h5>
                     <div className="subtotal-container">
-                        <h2>Subtotal</h2>
+                        <h2>Total</h2>
                         <h4>${this.state.total}</h4>
                     </div>
                 </div>

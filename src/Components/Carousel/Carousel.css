@@ -29,19 +29,19 @@
 @media screen and (min-width: 1000px) {
     .carousel-image-one {
         height: 600px;
-        width: 98.8vw;
+        width: 99.8vw;
         background-image: url('http://altitude-blog.com/wp-content/uploads/2019/06/ArcTeryx_Blog_Banner-A.jpg');
     }
     
     .carousel-image-two {
         height: 600px;
-        width: 98.8vw;
+        width: 99.8vw;
         background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/140420205805-01-stunning-nature---aurora-borealis---restricted.jpg');
     }
     
     .carousel-image-three {
         height: 600px;
-        width: 98.8vw;
+        width: 99.8vw;
         background-image: url('https://beam.land/static/uploads/1745_8bdbd.jpg');
     }
 }
